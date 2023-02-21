@@ -28,11 +28,11 @@ class ViewController2: UIViewController {
         guard let index = vc1.index else { return }
         let repo = vc1.repos[index]
 
-        repoLanguageLabel.text = "Written in \(repo.language)"
-        starLabel.text = "\(repo.stargazers_count) stars"
-        wachLabel.text = "\(repo.watchers_count) watchers"
-        forkLabel.text = "\(repo.forks_count) forks"
-        issueLabel.text = "\(repo.open_issues_count) open issues"
+        repoLanguageLabel.text = "✏️ : \(repo.language ?? "")"
+        starLabel.text = "⭐️ : \(repo.stargazers_count)"
+        wachLabel.text = "👀 : \(repo.watchers_count)"
+        forkLabel.text = "🔀 : \(repo.forks_count)"
+        issueLabel.text = "❗️ : \(repo.open_issues_count)"
 
         getImage(repo: repo)
     }
