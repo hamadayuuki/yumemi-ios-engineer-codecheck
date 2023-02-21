@@ -19,7 +19,7 @@ class ViewController2: UIViewController {
     @IBOutlet weak var forkLabel: UILabel!
     @IBOutlet weak var issueLabel: UILabel!
 
-    var vc1: ViewController?
+    weak var vc1: ViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
