@@ -10,10 +10,10 @@ import UIKit
 
 class ViewController: UITableViewController, UISearchBarDelegate {
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet private weak var searchBar: UISearchBar!
 
+    private var task: URLSessionTask?
     var repos: [Repository] = []
-    var task: URLSessionTask?
     var index: Int?
 
     override func viewDidLoad() {
@@ -37,8 +37,8 @@ class ViewController: UITableViewController, UISearchBarDelegate {
 
         if searchBarText.count != 0 {
             let searchUrl = "https://api.github.com/search/repositories?q=\(searchBarText)"
-            task = URLSession.shared.dataTask(with: URL(string: searchUrl)!) {
-                (data, res, err) in
+            task = URLSession.shared.dataTask(with: URL(string: searchUrl)!) { [weak self] (data, res, err) in
+                guard let self = self else { return }
                 guard let data = data else { return }
                 let repositories = try! JSONDecoder().decode(Repositories.self, from: data)
                 self.repos = repositories.items
@@ -62,7 +62,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell") ?? UITableViewCell()
         let repo = repos[indexPath.row]
         cell.textLabel?.text = repo.full_name
         cell.detailTextLabel?.text = repo.language
