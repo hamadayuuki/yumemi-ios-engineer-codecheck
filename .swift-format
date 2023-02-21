@@ -1,0 +1,22 @@
+{
+    "blankLinesAtStartOfScope": true,
+    "blankLinesAtEndOfScope": true,
+    "blankLinesBetweenScopes": true,
+    "duplicateImports": true,
+    "emptyBraces": true,
+    "spaceAroundBraces": true,
+    "spaceAroundBrackets": true,
+    "spaceAroundGenerics": true,
+    "spaceInsideBraces": true,
+    "spaceInsideBrackets": true,
+    "version": 1,
+    "lineLength": 100,
+    "indentation": {
+        "spaces": 4
+    },
+    "tabWidth": 4,
+    "maximumBlankLines": 1,
+    "respectsExistingLineBreaks": true,
+    "lineBreakBeforeControlFlowKeywords": true,
+    "lineBreakBeforeEachArgument": true
+}

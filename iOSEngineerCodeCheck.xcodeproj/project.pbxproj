@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -141,6 +141,7 @@
 				BFD945D7244DC5E80012785A /* Sources */,
 				BFD945D8244DC5E80012785A /* Frameworks */,
 				BFD945D9244DC5E80012785A /* Resources */,
+				D4A1C06929A4663400673AA7 /* swift-format */,
 			);
 			buildRules = (
 			);
@@ -256,6 +257,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D4A1C06929A4663400673AA7 /* swift-format */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "swift-format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# nicklockwood/SwiftFormatではなく、Apple標準のswift-formatを使用\n# サードパーティー製のライブラリを極力使いたくないというモチベーションから\n\n# `-p/--parallel` `-r/--recursive` `-i/--in-place` `-s/--strict`\n  xcrun --sdk macosx mint run swift-format swift-format -p -r -i iOSEngineerCodeCheck iOSEngineerCodeCheckTests iOSEngineerCodeCheckUITests\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BFD945D7244DC5E80012785A /* Sources */ = {
