@@ -27,31 +27,31 @@ class ViewController2: UIViewController {
 
         guard let vc1 = vc1 else { return }
         guard let index = vc1.index else { return }
-        let repo = vc1.repo[index]
+        let repo = vc1.repos[index]
 
-        repoLanguageLabel.text = "Written in \(repo["language"] as? String ?? "")"
-        starLabel.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        wachLabel.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
-        forkLabel.text = "\(repo["forks_count"] as? Int ?? 0) forks"
-        issueLabel.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
+        repoLanguageLabel.text = "Written in \(repo.language)"
+        starLabel.text = "\(repo.stargazers_count) stars"
+        wachLabel.text = "\(repo.watchers_count) watchers"
+        forkLabel.text = "\(repo.forks_count) forks"
+        issueLabel.text = "\(repo.open_issues_count) open issues"
 
         getImage(repo: repo)
 
     }
 
-    func getImage(repo: [String: Any]) {
-        repoTitleLabel.text = repo["full_name"] as? String
+    func getImage(repo: Repository) {
+        repoTitleLabel.text = repo.full_name
 
-        if let owner = repo["owner"] as? [String: Any] {
-            if let imgURL = owner["avatar_url"] as? String {
-                URLSession.shared.dataTask(with: URL(string: imgURL)!) { (data, res, err) in
-                    guard let data = data else { return }
-                    let img = UIImage(data: data)
-                    DispatchQueue.main.async {
-                        self.avatarImageView.image = img
-                    }
-                }.resume()
-            }
+        let owner = repo.owner
+        if !owner.avatar_url.isEmpty {
+            let imgURL = owner.avatar_url
+            URLSession.shared.dataTask(with: URL(string: imgURL)!) { (data, res, err) in
+                guard let data = data else { return }
+                let img = UIImage(data: data)
+                DispatchQueue.main.async {
+                    self.avatarImageView.image = img
+                }
+            }.resume()
         }
     }
 

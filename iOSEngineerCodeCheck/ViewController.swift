@@ -12,7 +12,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
 
-    var repo: [[String: Any]] = []
+    var repos: [Repository] = []
 
     var task: URLSessionTask?
     var index: Int?
@@ -41,13 +41,10 @@ class ViewController: UITableViewController, UISearchBarDelegate {
             task = URLSession.shared.dataTask(with: URL(string: searchUrl)!) {
                 (data, res, err) in
                 guard let data = data else { return }
-                if let obj = try! JSONSerialization.jsonObject(with: data) as? [String: Any] {
-                    if let items = obj["items"] as? [[String: Any]] {
-                        self.repo = items
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
+                let repositories = try! JSONDecoder().decode(Repositories.self, from: data)
+                self.repos = repositories.items
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
             }
             task?.resume()  // リスト更新
@@ -62,16 +59,16 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repo.count
+        return repos.count  // Default 30, https://docs.github.com/ja/rest/search?apiVersion=2022-11-28#search-repositories
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell
     {
         let cell = UITableViewCell()
-        let rp = repo[indexPath.row]
-        cell.textLabel?.text = rp["full_name"] as? String ?? ""
-        cell.detailTextLabel?.text = rp["language"] as? String ?? ""
+        let repo = repos[indexPath.row]
+        cell.textLabel?.text = repo.full_name
+        cell.detailTextLabel?.text = repo.language
         cell.tag = indexPath.row
         return cell
     }
