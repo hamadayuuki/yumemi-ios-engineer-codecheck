@@ -37,8 +37,8 @@ class ViewController: UITableViewController, UISearchBarDelegate {
 
         if searchBarText.count != 0 {
             let searchUrl = "https://api.github.com/search/repositories?q=\(searchBarText)"
-            task = URLSession.shared.dataTask(with: URL(string: searchUrl)!) {
-                (data, res, err) in
+            task = URLSession.shared.dataTask(with: URL(string: searchUrl)!) { [weak self] (data, res, err) in
+                guard let self = self else { return }
                 guard let data = data else { return }
                 let repositories = try! JSONDecoder().decode(Repositories.self, from: data)
                 self.repos = repositories.items
