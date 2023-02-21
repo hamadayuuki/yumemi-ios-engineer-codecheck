@@ -11,15 +11,15 @@ import UIKit
 class ViewController2: UIViewController {
 
     // sotoryboardとの接続を忘れていない限りnilが入ることはない
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var repoTitleLabel: UILabel!
-    @IBOutlet weak var repoLanguageLabel: UILabel!
-    @IBOutlet weak var starLabel: UILabel!
-    @IBOutlet weak var wachLabel: UILabel!
-    @IBOutlet weak var forkLabel: UILabel!
-    @IBOutlet weak var issueLabel: UILabel!
+    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var repoTitleLabel: UILabel!
+    @IBOutlet private weak var repoLanguageLabel: UILabel!
+    @IBOutlet private weak var starLabel: UILabel!
+    @IBOutlet private weak var wachLabel: UILabel!
+    @IBOutlet private weak var forkLabel: UILabel!
+    @IBOutlet private weak var issueLabel: UILabel!
 
-    weak var vc1: ViewController?
+    weak public var vc1: ViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
