@@ -62,7 +62,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell") ?? UITableViewCell()
         let repo = repos[indexPath.row]
         cell.textLabel?.text = repo.full_name
         cell.detailTextLabel?.text = repo.language
