@@ -21,13 +21,12 @@ class ViewController: UITableViewController, UISearchBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         SchBr.text = "GitHubのリポジトリを検索できるよー"
         SchBr.delegate = self
     }
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        // ↓こうすれば初期のテキストを消せる
         searchBar.text = ""
         return true
     }
@@ -52,8 +51,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
                     }
                 }
             }
-            // これ呼ばなきゃリストが更新されません
-            task?.resume()
+            task?.resume()   // リスト更新
         }
     }
 
@@ -68,7 +66,9 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         return repo.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+        -> UITableViewCell
+    {
         let cell = UITableViewCell()
         let rp = repo[indexPath.row]
         cell.textLabel?.text = rp["full_name"] as? String ?? ""
@@ -78,7 +78,6 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 画面遷移時に呼ばれる
         idx = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
     }
