@@ -13,7 +13,6 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
 
     var repos: [Repository] = []
-
     var task: URLSessionTask?
     var index: Int?
 
@@ -62,9 +61,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         return repos.count  // Default 30, https://docs.github.com/ja/rest/search?apiVersion=2022-11-28#search-repositories
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
-        -> UITableViewCell
-    {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let repo = repos[indexPath.row]
         cell.textLabel?.text = repo.full_name

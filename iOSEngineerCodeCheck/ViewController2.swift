@@ -12,7 +12,6 @@ class ViewController2: UIViewController {
 
     // sotoryboardとの接続を忘れていない限りnilが入ることはない
     @IBOutlet weak var avatarImageView: UIImageView!
-
     @IBOutlet weak var repoTitleLabel: UILabel!
     @IBOutlet weak var repoLanguageLabel: UILabel!
     @IBOutlet weak var starLabel: UILabel!
@@ -36,7 +35,6 @@ class ViewController2: UIViewController {
         issueLabel.text = "\(repo.open_issues_count) open issues"
 
         getImage(repo: repo)
-
     }
 
     func getImage(repo: Repository) {
@@ -54,5 +52,4 @@ class ViewController2: UIViewController {
             }.resume()
         }
     }
-
 }
