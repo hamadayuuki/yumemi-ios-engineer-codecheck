@@ -15,9 +15,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     var repo: [[String: Any]] = []
 
     var task: URLSessionTask?
-    var searchBarText: String!
-    var searchUrl: String!
-    var index: Int!
+    var index: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +34,14 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
-        searchBarText = searchBar.text!
+        guard let searchBarText = searchBar.text else { return }
 
         if searchBarText.count != 0 {
-            searchUrl = "https://api.github.com/search/repositories?q=\(searchBarText!)"
-            task = URLSession.shared.dataTask(with: URL(string: searchUrl)!) { (data, res, err) in
-                if let obj = try! JSONSerialization.jsonObject(with: data!) as? [String: Any] {
+            let searchUrl = "https://api.github.com/search/repositories?q=\(searchBarText)"
+            task = URLSession.shared.dataTask(with: URL(string: searchUrl)!) {
+                (data, res, err) in
+                guard let data = data else { return }
+                if let obj = try! JSONSerialization.jsonObject(with: data) as? [String: Any] {
                     if let items = obj["items"] as? [[String: Any]] {
                         self.repo = items
                         DispatchQueue.main.async {
@@ -57,8 +56,8 @@ class ViewController: UITableViewController, UISearchBarDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Detail" {
-            let dtl = segue.destination as! ViewController2
-            dtl.vc1 = self
+            let dtl: ViewController2? = segue.destination as? ViewController2
+            dtl?.vc1 = self
         }
     }
 
