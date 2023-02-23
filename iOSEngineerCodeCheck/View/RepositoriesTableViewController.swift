@@ -15,7 +15,7 @@ class RepositoriesTableViewController: UITableViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
 
     private var cancellable = Set<AnyCancellable>()
-    var repos: [Repository] = []
+    var repositories: [Repository] = []
     var index: Int?
 
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class RepositoriesTableViewController: UITableViewController {
             .receive(on: DispatchQueue.main)  // .sink{ }内で DispatchQueue.main.async を実行するようなもの
             .sink { [weak self] repositories in
                 guard let self = self else { return }
-                self.repos = repositories
+                self.repositories = repositories
                 self.tableView.reloadData()
             }
             .store(in: &cancellable)
@@ -43,8 +43,8 @@ class RepositoriesTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Detail" {
-            let dtl: RepositoryDetailViewController? = segue.destination as? RepositoryDetailViewController
-            dtl?.vc1 = self
+            let repositoryDetailViewContrller: RepositoryDetailViewController? = segue.destination as? RepositoryDetailViewController
+            repositoryDetailViewContrller?.repositoriesTableViewController = self
         }
     }
 }
@@ -72,12 +72,12 @@ extension RepositoriesTableViewController: UISearchBarDelegate {
 
 extension RepositoriesTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repos.count  // Default 30, https://docs.github.com/ja/rest/search?apiVersion=2022-11-28#search-repositories
+        return repositories.count  // Default 30, https://docs.github.com/ja/rest/search?apiVersion=2022-11-28#search-repositories
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell") ?? UITableViewCell()
-        let repo = repos[indexPath.row]
+        let repo = repositories[indexPath.row]
         cell.textLabel?.text = repo.full_name
         cell.detailTextLabel?.text = repo.language
         cell.tag = indexPath.row

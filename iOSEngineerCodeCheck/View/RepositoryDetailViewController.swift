@@ -23,17 +23,17 @@ class RepositoryDetailViewController: UIViewController {
     @IBOutlet private weak var forkLabel: UILabel!
     @IBOutlet private weak var issueLabel: UILabel!
 
-    weak public var vc1: RepositoriesTableViewController?
+    weak public var repositoriesTableViewController: RepositoriesTableViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let vc1 = vc1 else { return }
-        guard let index = vc1.index else { return }
-        let repo = vc1.repos[index]
+        guard let repositoriesTableViewController = repositoriesTableViewController else { return }
+        guard let index = repositoriesTableViewController.index else { return }
+        let repository = repositoriesTableViewController.repositories[index]
 
-        setLayout(repo: repo)
-        getImage(repo: repo)
+        setLayout(repo: repository)
+        getImage(repo: repository)
 
         repositoryDetailViewModel.$avatarUIImage
             .receive(on: DispatchQueue.main)
