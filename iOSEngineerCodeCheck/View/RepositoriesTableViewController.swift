@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 class RepositoriesTableViewController: UITableViewController {
-    private let repositoriesTableModel = RepositoriesTableModel()
+    private let repositoriesTableViewModel = RepositoriesTableViewModel()
 
     @IBOutlet private weak var searchBar: UISearchBar!
 
@@ -31,7 +31,7 @@ class RepositoriesTableViewController: UITableViewController {
     }
 
     private func setBinding() {
-        repositoriesTableModel.$repositories
+        repositoriesTableViewModel.$repositories
             .receive(on: DispatchQueue.main)  // .sink{ }内で DispatchQueue.main.async を実行するようなもの
             .sink { [weak self] repositories in
                 guard let self = self else { return }
@@ -62,7 +62,7 @@ extension RepositoriesTableViewController: UISearchBarDelegate {
 
         if !searchBarText.isEmpty {
             Task {
-                try await repositoriesTableModel.fetchGithubRepositories(searchText: searchBarText)
+                try await repositoriesTableViewModel.setRepositories(searchText: searchBarText)
             }
         }
     }
