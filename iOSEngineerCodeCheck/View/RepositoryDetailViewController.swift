@@ -6,9 +6,13 @@
 //  Copyright © 2020 YUMEMI Inc. All rights reserved.
 //
 
+import Combine
 import UIKit
 
 class RepositoryDetailViewController: UIViewController {
+    let repositoryDetailViewModel = RepositoryDetailViewModel()
+
+    var cancellable = Set<AnyCancellable>()
 
     // sotoryboardとの接続を忘れていない限りnilが入ることはない
     @IBOutlet private weak var avatarImageView: UIImageView!
@@ -30,6 +34,14 @@ class RepositoryDetailViewController: UIViewController {
 
         setLayout(repo: repo)
         getImage(repo: repo)
+
+        repositoryDetailViewModel.$avatarUIImage
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] avatarUIImage in
+                guard let self = self else { return }
+                self.avatarImageView.image = avatarUIImage
+            }
+            .store(in: &cancellable)
     }
 
     private func setLayout(repo: Repository) {
@@ -45,15 +57,10 @@ class RepositoryDetailViewController: UIViewController {
 
         let owner = repo.owner
         if !owner.avatar_url.isEmpty {
-            let imgURL = owner.avatar_url
-            URLSession.shared.dataTask(with: URL(string: imgURL)!) { [weak self] (data, res, err) in
-                guard let self = self else { return }
-                guard let data = data else { return }
-                let img = UIImage(data: data)
-                DispatchQueue.main.async {
-                    self.avatarImageView.image = img
-                }
-            }.resume()
+            let imageUrl = owner.avatar_url
+            Task {
+                try await repositoryDetailViewModel.setAvatarUIImage(url: imageUrl)
+            }
         }
     }
 }
