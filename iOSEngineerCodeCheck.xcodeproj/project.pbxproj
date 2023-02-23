@@ -143,7 +143,7 @@
 		D487C47129A785FA00022E3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */,
+				D487C47C29A7C56200022E3C /* Entity */,
 				D487C47829A7B29400022E3C /* Request.swift */,
 			);
 			path = Model;
@@ -165,6 +165,14 @@
 				D487C47A29A7B39600022E3C /* RepositoryDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D487C47C29A7C56200022E3C /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
