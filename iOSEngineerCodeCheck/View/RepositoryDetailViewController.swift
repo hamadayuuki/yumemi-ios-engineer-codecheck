@@ -19,7 +19,7 @@ class RepositoryDetailViewController: UIViewController {
     @IBOutlet private weak var forkLabel: UILabel!
     @IBOutlet private weak var issueLabel: UILabel!
 
-    weak public var vc1: RepositoriesViewController?
+    weak public var vc1: RepositoriesTableViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  RepositoriesTableModel.swift
 //  iOSEngineerCodeCheck
 //
 //  Created by 濵田　悠樹 on 2023/02/23.
@@ -8,7 +8,7 @@
 
 import Combine
 
-class ViewModel: ObservableObject {
+class RepositoriesTableModel: ObservableObject {
     private let githubRequest = GithubAPIRequest()
 
     @Published var repositories: [Repository] = []
