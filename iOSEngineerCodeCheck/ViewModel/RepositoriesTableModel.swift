@@ -10,7 +10,7 @@ import Combine
 
 class ViewModel: ObservableObject {
     private let githubRequest = GithubAPIRequest()
-    
+
     @Published var repositories: [Repository] = []
 
     public func fetchGithubRepositories(searchText: String) async throws {

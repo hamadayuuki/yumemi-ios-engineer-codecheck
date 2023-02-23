@@ -1,5 +1,5 @@
 //
-//  ViewController2.swift
+//  RepositoriesViewController.swift
 //  iOSEngineerCodeCheck
 //
 //  Created by 史 翔新 on 2020/04/21.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController2: UIViewController {
+class RepositoryDetailViewController: UIViewController {
 
     // sotoryboardとの接続を忘れていない限りnilが入ることはない
     @IBOutlet private weak var avatarImageView: UIImageView!
@@ -19,7 +19,7 @@ class ViewController2: UIViewController {
     @IBOutlet private weak var forkLabel: UILabel!
     @IBOutlet private weak var issueLabel: UILabel!
 
-    weak public var vc1: ViewController?
+    weak public var vc1: RepositoriesViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +28,16 @@ class ViewController2: UIViewController {
         guard let index = vc1.index else { return }
         let repo = vc1.repos[index]
 
+        setLayout(repo: repo)
+        getImage(repo: repo)
+    }
+
+    private func setLayout(repo: Repository) {
         repoLanguageLabel.text = "✏️ : \(repo.language ?? "")"
         starLabel.text = "⭐️ : \(repo.stargazers_count)"
         wachLabel.text = "👀 : \(repo.watchers_count)"
         forkLabel.text = "🔀 : \(repo.forks_count)"
         issueLabel.text = "❗️ : \(repo.open_issues_count)"
-
-        getImage(repo: repo)
     }
 
     func getImage(repo: Repository) {
