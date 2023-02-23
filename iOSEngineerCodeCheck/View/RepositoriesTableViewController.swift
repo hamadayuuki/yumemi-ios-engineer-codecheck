@@ -45,6 +45,7 @@ class RepositoriesTableViewController: UITableViewController {
         if segue.identifier == "Detail" {
             let repositoryDetailViewContrller: RepositoryDetailViewController? = segue.destination as? RepositoryDetailViewController
             repositoryDetailViewContrller?.repositoriesTableViewController = self
+            repositoryDetailViewContrller?.repository = repositories
         }
     }
 }

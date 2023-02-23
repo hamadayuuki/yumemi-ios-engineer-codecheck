@@ -13,6 +13,7 @@ class RepositoryDetailViewController: UIViewController {
     let repositoryDetailViewModel = RepositoryDetailViewModel()
 
     var cancellable = Set<AnyCancellable>()
+    public var repository: [Repository]?
 
     // sotoryboardとの接続を忘れていない限りnilが入ることはない
     @IBOutlet private weak var avatarImageView: UIImageView!
