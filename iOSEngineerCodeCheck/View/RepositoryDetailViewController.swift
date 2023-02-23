@@ -28,8 +28,11 @@ class RepositoryDetailViewController: UIViewController {
         super.viewDidLoad()
 
         setLayout()
+        setBinding()
         getImage()
+    }
 
+    private func setBinding() {
         repositoryDetailViewModel.$avatarUIImage
             .receive(on: DispatchQueue.main)
             .sink { [weak self] avatarUIImage in
@@ -40,6 +43,7 @@ class RepositoryDetailViewController: UIViewController {
     }
 
     private func setLayout() {
+        repoTitleLabel.text = repository.full_name
         repoLanguageLabel.text = "✏️ : \(repository.language ?? "")"
         starLabel.text = "⭐️ : \(repository.stargazers_count)"
         wachLabel.text = "👀 : \(repository.watchers_count)"
@@ -48,7 +52,6 @@ class RepositoryDetailViewController: UIViewController {
     }
 
     func getImage() {
-        repoTitleLabel.text = repository.full_name
         let owner = repository.owner
         if !owner.avatar_url.isEmpty {
             let imageUrl = owner.avatar_url

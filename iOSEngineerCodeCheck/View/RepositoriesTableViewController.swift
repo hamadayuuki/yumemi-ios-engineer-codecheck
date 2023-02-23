@@ -81,7 +81,7 @@ extension RepositoriesTableViewController {
         // 画面遷移
         let storyboard: UIStoryboard = UIStoryboard(name: "RepositoryDetail", bundle: nil)
         let nextVC = storyboard.instantiateViewController(identifier: "RepositoryDetail") as! RepositoryDetailViewController
-        nextVC.repository = repositories[index!]   // nil にならない. nilになるときはTableが表示されていない
+        nextVC.repository = repositories[index!]  // nil にならない. nilになるときはTableが表示されていない
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
