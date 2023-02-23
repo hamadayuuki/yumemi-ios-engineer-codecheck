@@ -38,14 +38,6 @@ class RepositoriesTableViewController: UITableViewController {
             }
             .store(in: &cancellable)
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Detail" {
-            let repositoryDetailViewContrller: RepositoryDetailViewController? = segue.destination as? RepositoryDetailViewController
-            repositoryDetailViewContrller?.repositoriesTableViewController = self
-            repositoryDetailViewContrller?.repository = repositories
-        }
-    }
 }
 
 // MARK: SearchBarDelegate
@@ -85,6 +77,11 @@ extension RepositoriesTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
-        performSegue(withIdentifier: "Detail", sender: self)
+
+        // 画面遷移
+        let storyboard: UIStoryboard = UIStoryboard(name: "RepositoryDetail", bundle: nil)
+        let nextVC = storyboard.instantiateViewController(identifier: "RepositoryDetail") as! RepositoryDetailViewController
+        nextVC.repository = repositories[index!]  // nil にならない. nilになるときはTableが表示されていない
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

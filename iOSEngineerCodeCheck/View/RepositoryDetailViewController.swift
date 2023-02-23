@@ -12,8 +12,8 @@ import UIKit
 class RepositoryDetailViewController: UIViewController {
     let repositoryDetailViewModel = RepositoryDetailViewModel()
 
-    var cancellable = Set<AnyCancellable>()
-    public var repository: [Repository]?
+    public var cancellable = Set<AnyCancellable>()
+    public var repository: Repository!
 
     // sotoryboardとの接続を忘れていない限りnilが入ることはない
     @IBOutlet private weak var avatarImageView: UIImageView!
@@ -24,18 +24,15 @@ class RepositoryDetailViewController: UIViewController {
     @IBOutlet private weak var forkLabel: UILabel!
     @IBOutlet private weak var issueLabel: UILabel!
 
-    weak public var repositoriesTableViewController: RepositoriesTableViewController?
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let repositoriesTableViewController = repositoriesTableViewController else { return }
-        guard let index = repositoriesTableViewController.index else { return }
-        let repository = repositoriesTableViewController.repositories[index]
+        setLayout()
+        setBinding()
+        getImage()
+    }
 
-        setLayout(repo: repository)
-        getImage(repo: repository)
-
+    private func setBinding() {
         repositoryDetailViewModel.$avatarUIImage
             .receive(on: DispatchQueue.main)
             .sink { [weak self] avatarUIImage in
@@ -45,18 +42,17 @@ class RepositoryDetailViewController: UIViewController {
             .store(in: &cancellable)
     }
 
-    private func setLayout(repo: Repository) {
-        repoLanguageLabel.text = "✏️ : \(repo.language ?? "")"
-        starLabel.text = "⭐️ : \(repo.stargazers_count)"
-        wachLabel.text = "👀 : \(repo.watchers_count)"
-        forkLabel.text = "🔀 : \(repo.forks_count)"
-        issueLabel.text = "❗️ : \(repo.open_issues_count)"
+    private func setLayout() {
+        repoTitleLabel.text = repository.full_name
+        repoLanguageLabel.text = "✏️ : \(repository.language ?? "")"
+        starLabel.text = "⭐️ : \(repository.stargazers_count)"
+        wachLabel.text = "👀 : \(repository.watchers_count)"
+        forkLabel.text = "🔀 : \(repository.forks_count)"
+        issueLabel.text = "❗️ : \(repository.open_issues_count)"
     }
 
-    func getImage(repo: Repository) {
-        repoTitleLabel.text = repo.full_name
-
-        let owner = repo.owner
+    func getImage() {
+        let owner = repository.owner
         if !owner.avatar_url.isEmpty {
             let imageUrl = owner.avatar_url
             Task {
