@@ -19,6 +19,7 @@
 		D487C47729A78B9C00022E3C /* RepositoriesTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C47629A78B9C00022E3C /* RepositoriesTableViewModel.swift */; };
 		D487C47929A7B29400022E3C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C47829A7B29400022E3C /* Request.swift */; };
 		D487C47B29A7B39600022E3C /* RepositoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C47A29A7B39600022E3C /* RepositoryDetailViewModel.swift */; };
+		D487C48029A7DC4300022E3C /* RepositoryDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D487C47F29A7DC4300022E3C /* RepositoryDetail.storyboard */; };
 		D4A1C06B29A4B5BB00673AA7 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		D487C47629A78B9C00022E3C /* RepositoriesTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTableViewModel.swift; sourceTree = "<group>"; };
 		D487C47829A7B29400022E3C /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		D487C47A29A7B39600022E3C /* RepositoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModel.swift; sourceTree = "<group>"; };
+		D487C47F29A7DC4300022E3C /* RepositoryDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RepositoryDetail.storyboard; sourceTree = "<group>"; };
 		D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 				D487C47229A7860200022E3C /* View */,
 				D487C47329A7860600022E3C /* ViewModel */,
 				BFD945E4244DC5E80012785A /* Main.storyboard */,
+				D487C47F29A7DC4300022E3C /* RepositoryDetail.storyboard */,
 				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
 				BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */,
 				BFD945EC244DC5EB0012785A /* Info.plist */,
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */,
+				D487C48029A7DC4300022E3C /* RepositoryDetail.storyboard in Resources */,
 				BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */,
 				BFD945E6244DC5E80012785A /* Main.storyboard in Resources */,
 			);
