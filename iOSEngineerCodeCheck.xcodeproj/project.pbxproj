@@ -116,8 +116,6 @@
 				D487C47129A785FA00022E3C /* Model */,
 				D487C47229A7860200022E3C /* View */,
 				D487C47329A7860600022E3C /* ViewModel */,
-				BFD945E4244DC5E80012785A /* Main.storyboard */,
-				D487C47F29A7DC4300022E3C /* RepositoryDetail.storyboard */,
 				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
 				BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */,
 				BFD945EC244DC5EB0012785A /* Info.plist */,
@@ -156,7 +154,9 @@
 			isa = PBXGroup;
 			children = (
 				BFD945E2244DC5E80012785A /* RepositoriesTableViewController.swift */,
+				BFD945E4244DC5E80012785A /* Main.storyboard */,
 				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
+				D487C47F29A7DC4300022E3C /* RepositoryDetail.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
