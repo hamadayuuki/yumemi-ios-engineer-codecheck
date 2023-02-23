@@ -26,9 +26,7 @@ class RepositoriesTableViewController: UITableViewController {
         setBinding()
     }
 
-    private func setLayout() {
-        searchBar.text = "GitHubのリポジトリを検索できるよー"
-    }
+    private func setLayout() {}
 
     private func setBinding() {
         repositoriesTableViewModel.$repositories
