@@ -6,13 +6,15 @@
 //  Copyright © 2020 YUMEMI Inc. All rights reserved.
 //
 
+import Combine
 import UIKit
 
 class ViewController: UITableViewController, UISearchBarDelegate {
+    private let viewModel = ViewModel()
 
     @IBOutlet private weak var searchBar: UISearchBar!
-
-    private var task: URLSessionTask?
+    
+    private var cancellable = Set<AnyCancellable>()
     var repos: [Repository] = []
     var index: Int?
 
@@ -21,6 +23,14 @@ class ViewController: UITableViewController, UISearchBarDelegate {
 
         searchBar.text = "GitHubのリポジトリを検索できるよー"
         searchBar.delegate = self
+
+        viewModel.$repositories
+            .receive(on: DispatchQueue.main)  // .sink{ }内で DispatchQueue.main.async を実行するようなもの
+            .sink { [weak self] repositories in
+                guard let self = self else { return }
+                self.repos = repositories
+            }
+            .store(in: &cancellable)
     }
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -28,25 +38,14 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         return true
     }
 
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        task?.cancel()
-    }
-
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchBarText = searchBar.text else { return }
 
-        if searchBarText.count != 0 {
-            let searchUrl = "https://api.github.com/search/repositories?q=\(searchBarText)"
-            task = URLSession.shared.dataTask(with: URL(string: searchUrl)!) { [weak self] (data, res, err) in
-                guard let self = self else { return }
-                guard let data = data else { return }
-                let repositories = try! JSONDecoder().decode(Repositories.self, from: data)
-                self.repos = repositories.items
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+        if !searchBarText.isEmpty {
+            Task {
+                try await viewModel.fetchGithubRepositories(searchText: searchBarText)
+                self.tableView.reloadData()
             }
-            task?.resume()  // リスト更新
         }
     }
 
