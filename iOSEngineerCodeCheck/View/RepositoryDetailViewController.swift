@@ -56,7 +56,11 @@ class RepositoryDetailViewController: UIViewController {
         if !owner.avatar_url.isEmpty {
             let imageUrl = owner.avatar_url
             Task {
-                try await repositoryDetailViewModel.setAvatarUIImage(url: imageUrl)
+                do {
+                    try await repositoryDetailViewModel.setAvatarUIImage(url: imageUrl)
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         }
     }
