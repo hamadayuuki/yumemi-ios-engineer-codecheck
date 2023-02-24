@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [*]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            swift-version: "5.7"  // XCode 14.1
+
+      - name: Test
+        run: xcodebuild test -project iOSEngineerCodeCheck.xcodeproj/ -scheme iOSEngineerCodeCheck -resultBundlePath TestResults -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 12"
+        
+        
+      - uses: kishikawakatsumi/xcresulttool@v1.3.0
+        with:
+          path: TestResults.xcresult
+        if: success() || failure()
