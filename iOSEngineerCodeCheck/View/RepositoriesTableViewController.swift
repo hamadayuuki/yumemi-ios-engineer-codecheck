@@ -53,7 +53,11 @@ extension RepositoriesTableViewController: UISearchBarDelegate {
 
         if !searchBarText.isEmpty {
             Task {
-                try await repositoriesTableViewModel.setRepositories(searchText: searchBarText)
+                do {
+                    try await repositoriesTableViewModel.setRepositories(searchText: searchBarText)
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         }
     }
