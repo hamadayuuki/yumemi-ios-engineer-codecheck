@@ -20,6 +20,20 @@
                ReferencedContainer = "container:iOSEngineerCodeCheck.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BFD945F0244DC5EB0012785A"
+               BuildableName = "iOSEngineerCodeCheckTests.xctest"
+               BlueprintName = "iOSEngineerCodeCheckTests"
+               ReferencedContainer = "container:iOSEngineerCodeCheck.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

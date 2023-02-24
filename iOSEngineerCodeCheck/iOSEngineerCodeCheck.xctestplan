@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "12DF1364-5D7C-456F-946C-7EE821347D74",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:iOSEngineerCodeCheck.xcodeproj",
+        "identifier" : "BFD945F0244DC5EB0012785A",
+        "name" : "iOSEngineerCodeCheckTests"
+      }
+    }
+  ],
+  "version" : 1
+}
