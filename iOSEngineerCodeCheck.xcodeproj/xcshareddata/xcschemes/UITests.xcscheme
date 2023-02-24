@@ -5,22 +5,6 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-      <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFD945FB244DC5EB0012785A"
-               BuildableName = "iOSEngineerCodeCheckUITests.xctest"
-               BlueprintName = "iOSEngineerCodeCheckUITests"
-               ReferencedContainer = "container:iOSEngineerCodeCheck.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -32,9 +16,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFD945F0244DC5EB0012785A"
-               BuildableName = "iOSEngineerCodeCheckTests.xctest"
-               BlueprintName = "iOSEngineerCodeCheckTests"
+               BlueprintIdentifier = "BFD945FB244DC5EB0012785A"
+               BuildableName = "iOSEngineerCodeCheckUITests.xctest"
+               BlueprintName = "iOSEngineerCodeCheckUITests"
                ReferencedContainer = "container:iOSEngineerCodeCheck.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,15 +41,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BFD945FB244DC5EB0012785A"
-            BuildableName = "iOSEngineerCodeCheckUITests.xctest"
-            BlueprintName = "iOSEngineerCodeCheckUITests"
-            ReferencedContainer = "container:iOSEngineerCodeCheck.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
