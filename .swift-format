@@ -2,6 +2,7 @@
     "blankLinesAtStartOfScope": true,
     "blankLinesAtEndOfScope": true,
     "blankLinesBetweenScopes": true,
+    "blankLinesAroundMark": true,
     "duplicateImports": true,
     "emptyBraces": true,
     "spaceAroundBraces": true,
@@ -16,7 +17,7 @@
     },
     "tabWidth": 4,
     "maximumBlankLines": 1,
-    "respectsExistingLineBreaks": true,
-    "lineBreakBeforeControlFlowKeywords": true,
-    "lineBreakBeforeEachArgument": true
+    "lineBreakBeforeEachArgument": true,
+    "wrapMultilineStatementBraces": false,
+    "elseOnSameLine": true,
 }

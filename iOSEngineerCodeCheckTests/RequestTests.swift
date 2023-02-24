@@ -24,8 +24,7 @@ class RequestTests: XCTestCase {
 
                 XCTAssertFalse(repos.items.isEmpty)
                 expectation.fulfill()
-            }
-            catch {
+            } catch {
                 XCTFail(error.localizedDescription)
             }
         }
@@ -45,8 +44,7 @@ class RequestTests: XCTestCase {
 
                 XCTAssertTrue(repos.items.isEmpty)
                 expectation.fulfill()
-            }
-            catch {
+            } catch {
                 XCTFail(error.localizedDescription)
             }
         }
