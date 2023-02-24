@@ -11,8 +11,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-            swift-version: "5.7"  // XCode 14.1
+        # with: swift-version: "5.7"  // XCode 14.1
+        
+      - name: Select Xcode version # Xcode 12.4 を使う
+        run: sudo xcode-select -s '/Applications/Xcode_14.1.app/Contents/Developer'
+    
+      - name: Confirm ls
+        run: ls
 
       - name: Test
         run: xcodebuild test -project iOSEngineerCodeCheck.xcodeproj/ -scheme iOSEngineerCodeCheck -resultBundlePath TestResults -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 12"
