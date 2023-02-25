@@ -23,5 +23,5 @@ jobs:
         with:
           xcode-version: '14.1.0'
 
-      - name: execute tests
+      - name: UnitTests
         run: xcodebuild test -scheme UnitTests -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 12,OS=16.1'
