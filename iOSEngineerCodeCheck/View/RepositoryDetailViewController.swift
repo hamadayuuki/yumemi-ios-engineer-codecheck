@@ -43,6 +43,9 @@ class RepositoryDetailViewController: UIViewController {
     }
 
     private func setLayout() {
+        let shareButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareRepository(_:)))
+        self.navigationItem.rightBarButtonItem = shareButton
+
         repoTitleLabel.text = repository.full_name
         repoLanguageLabel.text = "✏️ : \(repository.language ?? "")"
         starLabel.text = "⭐️ : \(repository.stargazers_count)"
@@ -63,5 +66,14 @@ class RepositoryDetailViewController: UIViewController {
                 }
             }
         }
+    }
+
+    // MARK: Button Action
+
+    @objc func shareRepository(_ sender: UIBarButtonItem) {
+        print("共有ボタンが押されました")
+        let shareItems = [repository.full_name, UIImage(named: "github-mark"), URL(string: repository.html_url)!] as [Any]
+        let shareActivityView = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        self.present(shareActivityView, animated: true)
     }
 }

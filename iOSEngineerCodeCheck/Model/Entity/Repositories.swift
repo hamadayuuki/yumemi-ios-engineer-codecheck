@@ -25,6 +25,7 @@ public struct Repository: Decodable {
     var forks_count: Int
     var open_issues_count: Int
     var full_name: String
+    var html_url: String
     var owner: Owner
 
     init(
@@ -35,6 +36,7 @@ public struct Repository: Decodable {
         forks_count: Int,
         open_issues_count: Int,
         full_name: String,
+        url: String,
         owner: Owner
     ) {
         self.id = id
@@ -44,6 +46,7 @@ public struct Repository: Decodable {
         self.forks_count = forks_count
         self.open_issues_count = open_issues_count
         self.full_name = full_name
+        self.html_url = url
         self.owner = owner
     }
 }
