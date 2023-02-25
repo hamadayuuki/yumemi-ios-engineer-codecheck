@@ -72,7 +72,7 @@ class RepositoryDetailViewController: UIViewController {
 
     @objc func shareRepository(_ sender: UIBarButtonItem) {
         print("共有ボタンが押されました")
-        let shareItems = [repository.full_name, UIImage(named: "github-mark"), URL(string: "https://github.com")!] as [Any]
+        let shareItems = [repository.full_name, UIImage(named: "github-mark"), URL(string: repository.html_url)!] as [Any]
         let shareActivityView = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
         self.present(shareActivityView, animated: true)
     }
