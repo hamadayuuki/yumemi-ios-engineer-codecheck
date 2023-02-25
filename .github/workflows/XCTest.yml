@@ -25,3 +25,6 @@ jobs:
 
       - name: UnitTests
         run: xcodebuild test -scheme UnitTests -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 12,OS=16.1'
+        
+      - name: UITests
+        run: xcodebuild test -scheme UITests -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 12,OS=16.1'
