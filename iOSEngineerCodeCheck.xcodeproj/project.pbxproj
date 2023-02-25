@@ -21,6 +21,7 @@
 		D487C48029A7DC4300022E3C /* RepositoryDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D487C47F29A7DC4300022E3C /* RepositoryDetail.storyboard */; };
 		D487C48229A8474400022E3C /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C48129A8474400022E3C /* RequestTests.swift */; };
 		D487C48A29A85D6200022E3C /* RepositoriesTableUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C48529A8596A00022E3C /* RepositoriesTableUITest.swift */; };
+		D487C49929AA7B0200022E3C /* WebUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C49829AA7B0200022E3C /* WebUIViewController.swift */; };
 		D4A1C06B29A4B5BB00673AA7 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		D487C48129A8474400022E3C /* RequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		D487C48329A8490A00022E3C /* iOSEngineerCodeCheck.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = iOSEngineerCodeCheck.xctestplan; sourceTree = "<group>"; };
 		D487C48529A8596A00022E3C /* RepositoriesTableUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTableUITest.swift; sourceTree = "<group>"; };
+		D487C49829AA7B0200022E3C /* WebUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUIViewController.swift; sourceTree = "<group>"; };
 		D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 				BFD945E4244DC5E80012785A /* Main.storyboard */,
 				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
 				D487C47F29A7DC4300022E3C /* RepositoryDetail.storyboard */,
+				D487C49829AA7B0200022E3C /* WebUIViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				D4A1C06B29A4B5BB00673AA7 /* Repositories.swift in Sources */,
 				D487C47929A7B29400022E3C /* Request.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
+				D487C49929AA7B0200022E3C /* WebUIViewController.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,
 				D487C47B29A7B39600022E3C /* RepositoryDetailViewModel.swift in Sources */,
 				D487C47729A78B9C00022E3C /* RepositoriesTableViewModel.swift in Sources */,
