@@ -21,7 +21,6 @@ class SearchRepositoryViewController: UIViewController {
     private var cancellable = Set<AnyCancellable>()
     var repositories: [Repository] = []
     var index: Int?
-    private let nukeOptions = ImageLoadingOptions(placeholder: UIImage(named: "github-mark"), transition: .fadeIn(duration: 0.2))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +110,7 @@ extension SearchRepositoryViewController: UITableViewDelegate, UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell", for: indexPath) as! RepositoryCell
         let repo = repositories[indexPath.row]
         let avatarImageUrl = URL(string: repo.owner.avatar_url)!
-        Nuke.loadImage(with: avatarImageUrl, options: nukeOptions, into: cell.iconImage!)
+        Nuke.loadImage(with: avatarImageUrl, options: Common.nukeGithubOptions, into: cell.iconImage!)
         cell.repositoryNameLabel?.text = repo.full_name
         cell.updatedAtLabel?.text = "last: \(repo.updated_at.prefix(10).replacingOccurrences(of:"-", with:"/"))"  // "2013-01-05T17:58:47Z" -> "2013-01-05" -> "2013/01/05"
         cell.repositoryInfoLabel?.text = "⭐️\(repo.stargazers_count)   👀\(repo.watchers_count)"
