@@ -10,8 +10,10 @@ import Foundation
 
 class Request {
     func fetchData(url: String) async throws -> Result<Data, APIError> {
-        var request = URLRequest(url: URL(string: url)!)
+        guard let url = URL(string: url) else { return .failure(.containsSpacialWord) }
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
+
         let (data, response) = try await URLSession.shared.data(for: request)
         // エラーハンドリング
         if let response = response as? HTTPURLResponse {
