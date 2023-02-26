@@ -70,6 +70,18 @@ class SearchRepositoryViewController: UIViewController {
                 }
             }
             .store(in: &cancellable)
+
+        repositoriesTableViewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    self.activityIndicatorView.startAnimating()
+                } else {
+                    self.activityIndicatorView.stopAnimating()
+                }
+            }
+            .store(in: &cancellable)
     }
 }
 
@@ -86,13 +98,10 @@ extension SearchRepositoryViewController: UISearchBarDelegate {
 
         if !searchBarText.trimmingCharacters(in: .whitespaces).isEmpty {
             Task {
-                activityIndicatorView.startAnimating()
                 do {
                     try await repositoriesTableViewModel.setRepositories(searchText: searchBarText)
-                    activityIndicatorView.stopAnimating()
                 } catch {
                     print(error.localizedDescription)
-                    activityIndicatorView.stopAnimating()
                 }
             }
         }
