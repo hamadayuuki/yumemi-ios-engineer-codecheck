@@ -137,3 +137,19 @@ extension SearchRepositoryViewController: UITableViewDelegate, UITableViewDataSo
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
+
+// MARK: ScrollViewDelegate
+
+extension SearchRepositoryViewController: UIScrollViewDelegate {
+    // スクロール位置を検知
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height else { return }
+        Task {
+            do {
+                try await repositoriesTableViewModel.addRepositories(searchText: "swift", page: 2)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
