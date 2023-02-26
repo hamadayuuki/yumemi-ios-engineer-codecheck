@@ -58,7 +58,7 @@ class RepositoryDetailViewController: UIViewController {
     private func setLayout() {
         repoTitleLabel.text = repository.full_name
         updatedAtLabel.text = "updatedAt: \( repository.updated_at.prefix(10).replacingOccurrences(of: "-", with: "/"))"
-        repositoryInfoLabel.text = "⭐️\(repository.stargazers_count)   👀\(repository.watchers_count)   🔀\(repository.forks_count)   ❗️\(repository.open_issues_count)"
+        repositoryInfoLabel.text = "⭐️ \(repository.stargazers_count.convertEnglishUtil())    👀 \(repository.watchers_count.convertEnglishUtil())    🔀 \(repository.forks_count.convertEnglishUtil())   ❗️ \(repository.open_issues_count.convertEnglishUtil())"
 
         shareLabel.text = "シェア"
         shareImage.image = UIImage(systemName: "square.and.arrow.up")
