@@ -22,20 +22,20 @@
                             <constraint firstAttribute="width" constant="80" id="TU0-TN-HdG"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reposityr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z75-ga-aBg">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reposityr g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z75-ga-aBg">
                         <rect key="frame" x="148" y="24" width="222" height="26.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="last: 2022/02/22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Of2-4S-4D6">
-                        <rect key="frame" x="148" y="62.333333333333336" width="222" height="19.333333333333336"/>
+                        <rect key="frame" x="148" y="58.333333333333336" width="222" height="19.333333333333336"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⭐️ 100    👀500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXw-zg-9Ih">
-                        <rect key="frame" x="148" y="93.666666666666671" width="222" height="17"/>
+                        <rect key="frame" x="148" y="89.666666666666671" width="222" height="17"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -43,6 +43,7 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Of2-4S-4D6" firstAttribute="top" secondItem="Z75-ga-aBg" secondAttribute="bottom" constant="8" id="0RI-dQ-2An"/>
                     <constraint firstItem="Z75-ga-aBg" firstAttribute="top" secondItem="an5-Za-w5t" secondAttribute="top" constant="24" id="2xN-vz-7D3"/>
                     <constraint firstItem="fQh-Dd-lub" firstAttribute="leading" secondItem="an5-Za-w5t" secondAttribute="leadingMargin" constant="24" id="8i5-tr-ZXP"/>
                     <constraint firstItem="IXw-zg-9Ih" firstAttribute="leading" secondItem="fQh-Dd-lub" secondAttribute="trailing" constant="24" id="M3t-QD-9dK"/>
@@ -55,7 +56,6 @@
                     <constraint firstItem="fQh-Dd-lub" firstAttribute="top" secondItem="an5-Za-w5t" secondAttribute="top" constant="24" id="r1W-qV-KoC"/>
                     <constraint firstItem="Z75-ga-aBg" firstAttribute="leading" secondItem="fQh-Dd-lub" secondAttribute="trailing" constant="24" id="rX9-Lp-bws"/>
                     <constraint firstAttribute="trailingMargin" secondItem="IXw-zg-9Ih" secondAttribute="trailing" constant="24" id="wRB-MR-InW"/>
-                    <constraint firstItem="Of2-4S-4D6" firstAttribute="top" secondItem="Z75-ga-aBg" secondAttribute="bottom" constant="12" id="z0W-ub-8NY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
