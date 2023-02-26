@@ -27,6 +27,7 @@
 		D487C4A529AB179D00022E3C /* Loaf in Frameworks */ = {isa = PBXBuildFile; productRef = D487C4A429AB179D00022E3C /* Loaf */; };
 		D487C4A729AB714400022E3C /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D487C4A629AB714400022E3C /* RepositoryCell.xib */; };
 		D487C4AB29AB73B600022E3C /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C4AA29AB73B600022E3C /* RepositoryCell.swift */; };
+		D487C4B029AB80EB00022E3C /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = D487C4AF29AB80EB00022E3C /* Nuke */; };
 		D4A1C06B29A4B5BB00673AA7 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D487C4A529AB179D00022E3C /* Loaf in Frameworks */,
+				D487C4B029AB80EB00022E3C /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +237,7 @@
 			name = iOSEngineerCodeCheck;
 			packageProductDependencies = (
 				D487C4A429AB179D00022E3C /* Loaf */,
+				D487C4AF29AB80EB00022E3C /* Nuke */,
 			);
 			productName = iOSEngineerCodeCheck;
 			productReference = BFD945DB244DC5E80012785A /* iOSEngineerCodeCheck.app */;
@@ -310,6 +313,7 @@
 			mainGroup = BFD945D2244DC5E80012785A;
 			packageReferences = (
 				D487C4A329AB179D00022E3C /* XCRemoteSwiftPackageReference "Loaf" */,
+				D487C4AE29AB80EB00022E3C /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = BFD945DC244DC5E80012785A /* Products */;
 			projectDirPath = "";
@@ -735,6 +739,14 @@
 				minimumVersion = 0.7.0;
 			};
 		};
+		D487C4AE29AB80EB00022E3C /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -742,6 +754,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D487C4A329AB179D00022E3C /* XCRemoteSwiftPackageReference "Loaf" */;
 			productName = Loaf;
+		};
+		D487C4AF29AB80EB00022E3C /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D487C4AE29AB80EB00022E3C /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
