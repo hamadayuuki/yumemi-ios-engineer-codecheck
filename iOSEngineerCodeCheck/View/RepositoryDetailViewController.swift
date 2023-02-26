@@ -27,19 +27,23 @@ class RepositoryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getImage()
         setLayout()
         setBinding()
-        getImage()
     }
 
-    private func setBinding() {
-        repositoryDetailViewModel.$avatarUIImage
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] avatarUIImage in
-                guard let self = self else { return }
-                self.avatarImageView.image = avatarUIImage
+    func getImage() {
+        let owner = repository.owner
+        if !owner.avatar_url.isEmpty {
+            let imageUrl = owner.avatar_url
+            Task {
+                do {
+                    try await repositoryDetailViewModel.setAvatarUIImage(url: imageUrl)
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
-            .store(in: &cancellable)
+        }
     }
 
     private func setLayout() {
@@ -55,18 +59,14 @@ class RepositoryDetailViewController: UIViewController {
         issueLabel.text = "❗️ : \(repository.open_issues_count)"
     }
 
-    func getImage() {
-        let owner = repository.owner
-        if !owner.avatar_url.isEmpty {
-            let imageUrl = owner.avatar_url
-            Task {
-                do {
-                    try await repositoryDetailViewModel.setAvatarUIImage(url: imageUrl)
-                } catch {
-                    print(error.localizedDescription)
-                }
+    private func setBinding() {
+        repositoryDetailViewModel.$avatarUIImage
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] avatarUIImage in
+                guard let self = self else { return }
+                self.avatarImageView.image = avatarUIImage
             }
-        }
+            .store(in: &cancellable)
     }
 
     // MARK: Button Action
