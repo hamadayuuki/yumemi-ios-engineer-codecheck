@@ -128,6 +128,7 @@
 			children = (
 				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
 				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
+				D487C47C29A7C56200022E3C /* Entity */,
 				D487C47129A785FA00022E3C /* Model */,
 				D487C47229A7860200022E3C /* View */,
 				D487C47329A7860600022E3C /* ViewModel */,
@@ -161,7 +162,6 @@
 		D487C47129A785FA00022E3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D487C47C29A7C56200022E3C /* Entity */,
 				D487C47829A7B29400022E3C /* Request.swift */,
 			);
 			path = Model;
@@ -170,13 +170,12 @@
 		D487C47229A7860200022E3C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D487C4AD29AB803B00022E3C /* Utility */,
+				D487C4AC29AB802400022E3C /* Component */,
 				BFD945E2244DC5E80012785A /* SearchRepositoryViewController.swift */,
 				BFD945E4244DC5E80012785A /* Main.storyboard */,
-				D487C4AA29AB73B600022E3C /* RepositoryCell.swift */,
-				D487C4A629AB714400022E3C /* RepositoryCell.xib */,
 				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
 				D487C47F29A7DC4300022E3C /* RepositoryDetail.storyboard */,
-				D487C49829AA7B0200022E3C /* WebUIViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +197,23 @@
 				D487C49C29AAF32C00022E3C /* APIErrorAlart.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		D487C4AC29AB802400022E3C /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D487C4A629AB714400022E3C /* RepositoryCell.xib */,
+				D487C4AA29AB73B600022E3C /* RepositoryCell.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		D487C4AD29AB803B00022E3C /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D487C49829AA7B0200022E3C /* WebUIViewController.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
