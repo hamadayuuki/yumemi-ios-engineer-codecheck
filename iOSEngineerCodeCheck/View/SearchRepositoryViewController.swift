@@ -19,6 +19,7 @@ class SearchRepositoryViewController: UIViewController {
     private var activityIndicatorView: UIActivityIndicatorView!
 
     private var cancellable = Set<AnyCancellable>()
+    private var searchWord = ""
     var repositories: [Repository] = []
     var index: Int?
 
@@ -70,6 +71,18 @@ class SearchRepositoryViewController: UIViewController {
                 }
             }
             .store(in: &cancellable)
+
+        repositoriesTableViewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    self.activityIndicatorView.startAnimating()
+                } else {
+                    self.activityIndicatorView.stopAnimating()
+                }
+            }
+            .store(in: &cancellable)
     }
 }
 
@@ -83,16 +96,19 @@ extension SearchRepositoryViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchBarText = searchBar.text else { return }
+        // 検索キーワードが変わり、検索を行う場合リセット
+        if self.searchWord == searchBar.text {
+        } else {
+            repositoriesTableViewModel.resetRepository()
+        }
 
         if !searchBarText.trimmingCharacters(in: .whitespaces).isEmpty {
             Task {
-                activityIndicatorView.startAnimating()
                 do {
                     try await repositoriesTableViewModel.setRepositories(searchText: searchBarText)
-                    activityIndicatorView.stopAnimating()
+                    self.searchWord = searchBarText
                 } catch {
                     print(error.localizedDescription)
-                    activityIndicatorView.stopAnimating()
                 }
             }
         }
@@ -126,5 +142,21 @@ extension SearchRepositoryViewController: UITableViewDelegate, UITableViewDataSo
         let nextVC = storyboard.instantiateViewController(identifier: "RepositoryDetail") as! RepositoryDetailViewController
         nextVC.repository = repositories[index!]  // nil にならない. nilになるときはTableが表示されていない
         self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+}
+
+// MARK: ScrollViewDelegate
+
+extension SearchRepositoryViewController: UIScrollViewDelegate {
+    // スクロール位置を検知
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height else { return }
+        Task {
+            do {
+                try await repositoriesTableViewModel.addRepositories(searchText: self.searchWord)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
