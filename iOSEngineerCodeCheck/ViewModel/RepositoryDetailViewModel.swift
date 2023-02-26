@@ -21,8 +21,7 @@ class RepositoryDetailViewModel: ObservableObject {
         case let .success(data):
             avatarUIImage = UIImage(data: data) ?? UIImage()
         case let .failure(apiError):
-            apiErrorAlart.title = apiError.title
-            apiErrorAlart.description = apiError.description
+            apiErrorAlart = APIErrorAlart(title: apiError.title, description: apiError.description)
         }
     }
 }

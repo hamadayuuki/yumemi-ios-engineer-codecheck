@@ -23,8 +23,7 @@ class RepositoriesTableViewModel: ObservableObject {
             let repos: Repositories = try! JSONDecoder().decode(Repositories.self, from: data)  // TODO: 変数名変更, Repositoriesの命名から変更
             repositories = repos.items
         case let .failure(apiError):
-            apiErrorAlart.title = apiError.title
-            apiErrorAlart.description = apiError.description
+            apiErrorAlart = APIErrorAlart(title: apiError.title, description: apiError.description)
         }
     }
 }
