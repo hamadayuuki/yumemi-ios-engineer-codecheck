@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Nuke
 import UIKit
 
 class RepositoryDetailViewController: UIViewController {
@@ -36,26 +37,14 @@ class RepositoryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getImage()
         setLayout()
         setBinding()
     }
 
-    func getImage() {
-        let owner = repository.owner
-        if !owner.avatar_url.isEmpty {
-            let imageUrl = owner.avatar_url
-            Task {
-                do {
-                    try await repositoryDetailViewModel.setAvatarUIImage(url: imageUrl)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
-
     private func setLayout() {
+        let avatarImageUrl = URL(string: repository.owner.avatar_url)!
+        Nuke.loadImage(with: avatarImageUrl, options: Common.nukeGithubOptions, into: avatarImageView!)
+
         repoTitleLabel.text = repository.full_name
         updatedAtLabel.text = "updatedAt: \( repository.updated_at.prefix(10).replacingOccurrences(of: "-", with: "/"))"
         repositoryInfoLabel.text = "⭐️ \(repository.stargazers_count.convertEnglishUtil())    👀 \(repository.watchers_count.convertEnglishUtil())    🔀 \(repository.forks_count.convertEnglishUtil())   ❗️ \(repository.open_issues_count.convertEnglishUtil())"
@@ -68,15 +57,7 @@ class RepositoryDetailViewController: UIViewController {
         showWebButton.addTarget(self, action: #selector(showWebView(_:)), for: .touchUpInside)
     }
 
-    private func setBinding() {
-        repositoryDetailViewModel.$avatarUIImage
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] avatarUIImage in
-                guard let self = self else { return }
-                self.avatarImageView.image = avatarUIImage
-            }
-            .store(in: &cancellable)
-    }
+    private func setBinding() {}
 
     // MARK: Button Action
 
