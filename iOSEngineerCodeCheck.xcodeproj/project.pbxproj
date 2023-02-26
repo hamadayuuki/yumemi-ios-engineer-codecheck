@@ -29,6 +29,7 @@
 		D487C4AB29AB73B600022E3C /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C4AA29AB73B600022E3C /* RepositoryCell.swift */; };
 		D487C4B029AB80EB00022E3C /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = D487C4AF29AB80EB00022E3C /* Nuke */; };
 		D487C4B829ABA9D000022E3C /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C4B729ABA9D000022E3C /* Int+Extension.swift */; };
+		D487C4BB29ABAF0200022E3C /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C4BA29ABAF0200022E3C /* Common.swift */; };
 		D4A1C06B29A4B5BB00673AA7 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		D487C4A629AB714400022E3C /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		D487C4AA29AB73B600022E3C /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		D487C4B729ABA9D000022E3C /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		D487C4BA29ABAF0200022E3C /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 			children = (
 				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
 				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
+				D487C4B929ABAEF700022E3C /* Common */,
 				D487C4B629ABA9C000022E3C /* Extension */,
 				D487C47C29A7C56200022E3C /* Entity */,
 				D487C47129A785FA00022E3C /* Model */,
@@ -227,6 +230,14 @@
 				D487C4B729ABA9D000022E3C /* Int+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		D487C4B929ABAEF700022E3C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D487C4BA29ABAF0200022E3C /* Common.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,6 +410,7 @@
 				D487C4AB29AB73B600022E3C /* RepositoryCell.swift in Sources */,
 				D487C49B29AAE9D900022E3C /* APIError.swift in Sources */,
 				D487C47929A7B29400022E3C /* Request.swift in Sources */,
+				D487C4BB29ABAF0200022E3C /* Common.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
 				D487C49D29AAF32C00022E3C /* APIErrorAlart.swift in Sources */,
 				D487C4B829ABA9D000022E3C /* Int+Extension.swift in Sources */,

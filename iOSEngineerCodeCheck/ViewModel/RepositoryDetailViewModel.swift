@@ -9,19 +9,5 @@
 import Combine
 import UIKit
 
-class RepositoryDetailViewModel: ObservableObject {
-    private let request = Request()
-
-    @Published public var avatarUIImage = UIImage()
-    @Published var apiErrorAlart: APIErrorAlart = APIErrorAlart(title: "", description: "")
-
-    public func setAvatarUIImage(url: String) async throws {
-        let result = try await request.fetchData(url: url)
-        switch result {
-        case let .success(data):
-            avatarUIImage = UIImage(data: data) ?? UIImage()
-        case let .failure(apiError):
-            apiErrorAlart = APIErrorAlart(title: apiError.title, description: apiError.description)
-        }
-    }
-}
+// ViewでNukeを使った画像取得が可能となったことで本VMが必要なくなった
+class RepositoryDetailViewModel: ObservableObject {}
