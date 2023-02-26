@@ -16,13 +16,22 @@ class RepositoryDetailViewController: UIViewController {
     public var repository: Repository!
 
     // sotoryboardとの接続を忘れていない限りnilが入ることはない
-    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.contentMode = .scaleAspectFit
+            avatarImageView.layer.cornerRadius = 24
+        }
+    }
     @IBOutlet private weak var repoTitleLabel: UILabel!
-    @IBOutlet private weak var repoLanguageLabel: UILabel!
-    @IBOutlet private weak var starLabel: UILabel!
-    @IBOutlet private weak var wachLabel: UILabel!
-    @IBOutlet private weak var forkLabel: UILabel!
-    @IBOutlet private weak var issueLabel: UILabel!
+    @IBOutlet private weak var updatedAtLabel: UILabel!
+    @IBOutlet private weak var repositoryInfoLabel: UILabel!
+
+    @IBOutlet weak var shareLabel: UILabel!
+    @IBOutlet weak var shareImage: UIImageView!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var showWebLabel: UILabel!
+    @IBOutlet weak var showWebImage: UIImageView!
+    @IBOutlet weak var showWebButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,16 +56,16 @@ class RepositoryDetailViewController: UIViewController {
     }
 
     private func setLayout() {
-        let shareButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareRepository(_:)))
-        let showWebButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(showWebView(_:)))
-        self.navigationItem.rightBarButtonItems = [showWebButton, shareButton]
-
         repoTitleLabel.text = repository.full_name
-        repoLanguageLabel.text = "✏️ : \(repository.language ?? "")"
-        starLabel.text = "⭐️ : \(repository.stargazers_count)"
-        wachLabel.text = "👀 : \(repository.watchers_count)"
-        forkLabel.text = "🔀 : \(repository.forks_count)"
-        issueLabel.text = "❗️ : \(repository.open_issues_count)"
+        updatedAtLabel.text = "updatedAt: \( repository.updated_at.prefix(10).replacingOccurrences(of: "-", with: "/"))"
+        repositoryInfoLabel.text = "⭐️\(repository.stargazers_count)   👀\(repository.watchers_count)   🔀\(repository.forks_count)   ❗️\(repository.open_issues_count)"
+
+        shareLabel.text = "シェア"
+        shareImage.image = UIImage(systemName: "square.and.arrow.up")
+        shareButton.addTarget(self, action: #selector(shareRepository(_:)), for: .touchUpInside)
+        showWebLabel.text = "WEB"
+        showWebImage.image = UIImage(systemName: "globe.badge.chevron.backward")
+        showWebButton.addTarget(self, action: #selector(showWebView(_:)), for: .touchUpInside)
     }
 
     private func setBinding() {
@@ -72,7 +81,7 @@ class RepositoryDetailViewController: UIViewController {
     // MARK: Button Action
 
     @objc func shareRepository(_ sender: UIBarButtonItem) {
-        let shareItems = [repository.full_name, UIImage(named: "github-mark"), URL(string: repository.html_url)!] as [Any]
+        let shareItems = [repository.full_name, UIImage(named: "github-mark")!, URL(string: repository.html_url)!] as [Any]
         let shareActivityView = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
         self.present(shareActivityView, animated: true)
     }

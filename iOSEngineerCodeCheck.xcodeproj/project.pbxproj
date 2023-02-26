@@ -204,8 +204,8 @@
 		D487C4AC29AB802400022E3C /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				D487C4A629AB714400022E3C /* RepositoryCell.xib */,
 				D487C4AA29AB73B600022E3C /* RepositoryCell.swift */,
+				D487C4A629AB714400022E3C /* RepositoryCell.xib */,
 			);
 			path = Component;
 			sourceTree = "<group>";
