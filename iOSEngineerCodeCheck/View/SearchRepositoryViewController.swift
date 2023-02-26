@@ -19,6 +19,7 @@ class SearchRepositoryViewController: UIViewController {
     private var activityIndicatorView: UIActivityIndicatorView!
 
     private var cancellable = Set<AnyCancellable>()
+    private var searchWord = ""
     var repositories: [Repository] = []
     var index: Int?
 
@@ -95,11 +96,17 @@ extension SearchRepositoryViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchBarText = searchBar.text else { return }
+        // 検索キーワードが変わり、検索を行う場合リセット
+        if self.searchWord == searchBar.text {
+        } else {
+            repositoriesTableViewModel.resetRepository()
+        }
 
         if !searchBarText.trimmingCharacters(in: .whitespaces).isEmpty {
             Task {
                 do {
                     try await repositoriesTableViewModel.setRepositories(searchText: searchBarText)
+                    self.searchWord = searchBarText
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -146,7 +153,7 @@ extension SearchRepositoryViewController: UIScrollViewDelegate {
         guard scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height else { return }
         Task {
             do {
-                try await repositoriesTableViewModel.addRepositories(searchText: "swift", page: 2)
+                try await repositoriesTableViewModel.addRepositories(searchText: self.searchWord)
             } catch {
                 print(error.localizedDescription)
             }

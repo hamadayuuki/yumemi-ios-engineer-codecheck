@@ -15,6 +15,7 @@ class RepositoriesTableViewModel: ObservableObject {
     @Published var repositories: [Repository] = []
     @Published var apiErrorAlart: APIErrorAlart = APIErrorAlart(title: "", description: "")
     @Published var isLoading = false
+    @Published var page = 0
 
     public func setRepositories(searchText: String) async throws {
         let githubAPISearchUrl = "https://api.github.com/search/repositories?q=\(searchText)"
@@ -26,6 +27,7 @@ class RepositoriesTableViewModel: ObservableObject {
             case let .success(data):
                 let repos: Repositories = try! JSONDecoder().decode(Repositories.self, from: data)  // TODO: 変数名変更, Repositoriesの命名から変更
                 self.repositories = repos.items
+                self.page = 2  // 0 -> 2, 次検索する時のページ数となるため
             case let .failure(apiError):
                 self.apiErrorAlart = APIErrorAlart(title: apiError.title, description: apiError.description)
             }
@@ -35,9 +37,11 @@ class RepositoriesTableViewModel: ObservableObject {
         }
     }
 
-    public func addRepositories(searchText: String, page: Int) async throws {
+    public func addRepositories(searchText: String) async throws {
         guard !isLoading else { return }  // 連続でAPIを叩かないように
-        let githubAPISearchUrl = "https://api.github.com/search/repositories?q=\(searchText)&page=\(2)"
+        guard page != 0 else { return }  // 初期状態でAPIを叩かないように
+
+        let githubAPISearchUrl = "https://api.github.com/search/repositories?q=\(searchText)&page=\(page)"
         isLoading = true
         do {
             let result = try await self.request.fetchData(url: githubAPISearchUrl)
@@ -46,6 +50,8 @@ class RepositoriesTableViewModel: ObservableObject {
             case let .success(data):
                 let repos: Repositories = try! JSONDecoder().decode(Repositories.self, from: data)  // TODO: 変数名変更, Repositoriesの命名から変更
                 self.repositories += repos.items
+                self.page += 1
+                print(self.repositories.count)
             case let .failure(apiError):
                 self.apiErrorAlart = APIErrorAlart(title: apiError.title, description: apiError.description)
             }
@@ -53,5 +59,10 @@ class RepositoriesTableViewModel: ObservableObject {
             print(error.localizedDescription)
             self.isLoading = false
         }
+    }
+
+    public func resetRepository() {
+        repositories = []
+        page = 0
     }
 }
