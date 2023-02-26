@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Loaf
 import UIKit
 
 class RepositoriesTableViewController: UITableViewController {
@@ -33,8 +34,26 @@ class RepositoriesTableViewController: UITableViewController {
             .receive(on: DispatchQueue.main)  // .sink{ }内で DispatchQueue.main.async を実行するようなもの
             .sink { [weak self] repositories in
                 guard let self = self else { return }
-                self.repositories = repositories
+                self.repositories = repositories  // TODO: レスポンスを正常に受け取ったが、中身が空の時アラート表示
                 self.tableView.reloadData()
+            }
+            .store(in: &cancellable)
+
+        repositoriesTableViewModel.$apiErrorAlart
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] apiErrorAlart in
+                guard let self = self else { return }
+                if !apiErrorAlart.title.isEmpty && !apiErrorAlart.description.isEmpty {
+                    // エラー表示
+                    Loaf(apiErrorAlart.description, state: .custom(.init(backgroundColor: .systemPink, width: .screenPercentage(0.8))), location: .top, sender: self).show(.short) { dismissalType in
+                        switch dismissalType {
+                        case .tapped:
+                            print("Tapped!")
+                        case .timedOut:
+                            print("Timmed out!")
+                        }
+                    }
+                }
             }
             .store(in: &cancellable)
     }
@@ -51,7 +70,7 @@ extension RepositoriesTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchBarText = searchBar.text else { return }
 
-        if !searchBarText.isEmpty {
+        if !searchBarText.trimmingCharacters(in: .whitespaces).isEmpty {
             Task {
                 do {
                     try await repositoriesTableViewModel.setRepositories(searchText: searchBarText)

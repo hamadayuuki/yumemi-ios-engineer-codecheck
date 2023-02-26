@@ -9,10 +9,31 @@
 import Foundation
 
 class Request {
-    func fetchData(url: String) async throws -> Data {
-        var request = URLRequest(url: URL(string: url)!)
+    func fetchData(url: String) async throws -> Result<Data, APIError> {
+        guard let url = URL(string: url) else { return .failure(.containsSpacialWord) }
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        let (data, _) = try await URLSession.shared.data(for: request)
-        return data
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        // エラーハンドリング
+        if let response = response as? HTTPURLResponse {
+            switch response.statusCode {
+            case 400:
+                return .failure(.badrequest)
+            case 401:
+                return .failure(.unauthorized)
+            case 403:
+                return .failure(.forbidden)
+            case 404:
+                return .failure(.notfound)
+            case 422:
+                return .failure(.validationFailed)
+            case 500..<600:
+                return .failure(.server(response.statusCode))
+            default:
+                break
+            }
+        }
+        return .success(data)
     }
 }

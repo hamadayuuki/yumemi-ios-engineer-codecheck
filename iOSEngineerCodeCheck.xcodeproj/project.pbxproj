@@ -22,6 +22,9 @@
 		D487C48229A8474400022E3C /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C48129A8474400022E3C /* RequestTests.swift */; };
 		D487C48A29A85D6200022E3C /* RepositoriesTableUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C48529A8596A00022E3C /* RepositoriesTableUITest.swift */; };
 		D487C49929AA7B0200022E3C /* WebUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C49829AA7B0200022E3C /* WebUIViewController.swift */; };
+		D487C49B29AAE9D900022E3C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C49A29AAE9D900022E3C /* APIError.swift */; };
+		D487C49D29AAF32C00022E3C /* APIErrorAlart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C49C29AAF32C00022E3C /* APIErrorAlart.swift */; };
+		D487C4A529AB179D00022E3C /* Loaf in Frameworks */ = {isa = PBXBuildFile; productRef = D487C4A429AB179D00022E3C /* Loaf */; };
 		D4A1C06B29A4B5BB00673AA7 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +68,8 @@
 		D487C48329A8490A00022E3C /* iOSEngineerCodeCheck.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = iOSEngineerCodeCheck.xctestplan; sourceTree = "<group>"; };
 		D487C48529A8596A00022E3C /* RepositoriesTableUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTableUITest.swift; sourceTree = "<group>"; };
 		D487C49829AA7B0200022E3C /* WebUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUIViewController.swift; sourceTree = "<group>"; };
+		D487C49A29AAE9D900022E3C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		D487C49C29AAF32C00022E3C /* APIErrorAlart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorAlart.swift; sourceTree = "<group>"; };
 		D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D487C4A529AB179D00022E3C /* Loaf in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */,
+				D487C49A29AAE9D900022E3C /* APIError.swift */,
+				D487C49C29AAF32C00022E3C /* APIErrorAlart.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -203,6 +211,9 @@
 			dependencies = (
 			);
 			name = iOSEngineerCodeCheck;
+			packageProductDependencies = (
+				D487C4A429AB179D00022E3C /* Loaf */,
+			);
 			productName = iOSEngineerCodeCheck;
 			productReference = BFD945DB244DC5E80012785A /* iOSEngineerCodeCheck.app */;
 			productType = "com.apple.product-type.application";
@@ -275,6 +286,9 @@
 				Base,
 			);
 			mainGroup = BFD945D2244DC5E80012785A;
+			packageReferences = (
+				D487C4A329AB179D00022E3C /* XCRemoteSwiftPackageReference "Loaf" */,
+			);
 			productRefGroup = BFD945DC244DC5E80012785A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -344,8 +358,10 @@
 				BFD945E3244DC5E80012785A /* RepositoriesTableViewController.swift in Sources */,
 				BF0A658D244F2A3B00280FA6 /* RepositoryDetailViewController.swift in Sources */,
 				D4A1C06B29A4B5BB00673AA7 /* Repositories.swift in Sources */,
+				D487C49B29AAE9D900022E3C /* APIError.swift in Sources */,
 				D487C47929A7B29400022E3C /* Request.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
+				D487C49D29AAF32C00022E3C /* APIErrorAlart.swift in Sources */,
 				D487C49929AA7B0200022E3C /* WebUIViewController.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,
 				D487C47B29A7B39600022E3C /* RepositoryDetailViewModel.swift in Sources */,
@@ -685,6 +701,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D487C4A329AB179D00022E3C /* XCRemoteSwiftPackageReference "Loaf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/schmidyy/Loaf";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D487C4A429AB179D00022E3C /* Loaf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D487C4A329AB179D00022E3C /* XCRemoteSwiftPackageReference "Loaf" */;
+			productName = Loaf;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BFD945D3244DC5E80012785A /* Project object */;
 }
