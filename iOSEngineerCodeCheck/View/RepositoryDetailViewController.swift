@@ -44,7 +44,8 @@ class RepositoryDetailViewController: UIViewController {
 
     private func setLayout() {
         let shareButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareRepository(_:)))
-        self.navigationItem.rightBarButtonItem = shareButton
+        let showWebButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(showWebView(_:)))
+        self.navigationItem.rightBarButtonItems = [showWebButton, shareButton]
 
         repoTitleLabel.text = repository.full_name
         repoLanguageLabel.text = "✏️ : \(repository.language ?? "")"
@@ -71,9 +72,14 @@ class RepositoryDetailViewController: UIViewController {
     // MARK: Button Action
 
     @objc func shareRepository(_ sender: UIBarButtonItem) {
-        print("共有ボタンが押されました")
         let shareItems = [repository.full_name, UIImage(named: "github-mark"), URL(string: repository.html_url)!] as [Any]
         let shareActivityView = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
         self.present(shareActivityView, animated: true)
+    }
+
+    @objc func showWebView(_ sender: UIBarButtonItem) {
+        let webUIViewController = WebUIViewContorller(url: repository.html_url, barTitle: repository.full_name)
+        let webNavigationController = UINavigationController(rootViewController: webUIViewController)  // 遷移先画面で NavigationBar を表示させるため
+        self.present(webNavigationController, animated: true)
     }
 }
