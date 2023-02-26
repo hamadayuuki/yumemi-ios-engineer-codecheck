@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Loaf
 import UIKit
 
 class RepositoriesTableViewController: UITableViewController {
@@ -42,8 +43,17 @@ class RepositoriesTableViewController: UITableViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] apiErrorAlart in
                 guard let self = self else { return }
-                print(apiErrorAlart.title)
-                print(apiErrorAlart.description)
+                if !apiErrorAlart.title.isEmpty && !apiErrorAlart.description.isEmpty {
+                    // エラー表示
+                    Loaf(apiErrorAlart.description, state: .custom(.init(backgroundColor: .systemPink, width: .screenPercentage(0.8))), location: .top, sender: self).show(.short) { dismissalType in
+                        switch dismissalType {
+                        case .tapped:
+                            print("Tapped!")
+                        case .timedOut:
+                            print("Timmed out!")
+                        }
+                    }
+                }
             }
             .store(in: &cancellable)
     }
