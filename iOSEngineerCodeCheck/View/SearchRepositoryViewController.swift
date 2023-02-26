@@ -8,6 +8,7 @@
 
 import Combine
 import Loaf
+import Nuke
 import UIKit
 
 class SearchRepositoryViewController: UIViewController {
@@ -19,6 +20,7 @@ class SearchRepositoryViewController: UIViewController {
     private var cancellable = Set<AnyCancellable>()
     var repositories: [Repository] = []
     var index: Int?
+    private let nukeOptions = ImageLoadingOptions(placeholder: UIImage(named: "github-mark"), transition: .fadeIn(duration: 0.2))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +100,8 @@ extension SearchRepositoryViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell", for: indexPath) as! RepositoryCell
         let repo = repositories[indexPath.row]
-        cell.iconImage?.image = UIImage(named: "github-mark")
+        let avatarImageUrl = URL(string: repo.owner.avatar_url)!
+        Nuke.loadImage(with: avatarImageUrl, options: nukeOptions, into: cell.iconImage!)
         cell.repositoryNameLabel?.text = repo.full_name
         cell.updatedAtLabel?.text = "2022/01/01"
         cell.repositoryInfoLabel?.text = "⭐️\(repo.stargazers_count)   👀\(repo.watchers_count)"
