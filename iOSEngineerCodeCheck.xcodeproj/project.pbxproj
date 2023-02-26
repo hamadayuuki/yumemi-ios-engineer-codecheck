@@ -10,7 +10,7 @@
 		BF0A658D244F2A3B00280FA6 /* RepositoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
 		BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945E0244DC5E80012785A /* SceneDelegate.swift */; };
-		BFD945E3244DC5E80012785A /* RepositoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945E2244DC5E80012785A /* RepositoriesTableViewController.swift */; };
+		BFD945E3244DC5E80012785A /* SearchRepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945E2244DC5E80012785A /* SearchRepositoryViewController.swift */; };
 		BFD945E6244DC5E80012785A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E4244DC5E80012785A /* Main.storyboard */; };
 		BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E7244DC5EB0012785A /* Assets.xcassets */; };
 		BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */; };
@@ -25,6 +25,8 @@
 		D487C49B29AAE9D900022E3C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C49A29AAE9D900022E3C /* APIError.swift */; };
 		D487C49D29AAF32C00022E3C /* APIErrorAlart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C49C29AAF32C00022E3C /* APIErrorAlart.swift */; };
 		D487C4A529AB179D00022E3C /* Loaf in Frameworks */ = {isa = PBXBuildFile; productRef = D487C4A429AB179D00022E3C /* Loaf */; };
+		D487C4A729AB714400022E3C /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D487C4A629AB714400022E3C /* RepositoryCell.xib */; };
+		D487C4AB29AB73B600022E3C /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487C4AA29AB73B600022E3C /* RepositoryCell.swift */; };
 		D4A1C06B29A4B5BB00673AA7 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +52,7 @@
 		BFD945DB244DC5E80012785A /* iOSEngineerCodeCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSEngineerCodeCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD945DE244DC5E80012785A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFD945E0244DC5E80012785A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BFD945E2244DC5E80012785A /* RepositoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTableViewController.swift; sourceTree = "<group>"; };
+		BFD945E2244DC5E80012785A /* SearchRepositoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryViewController.swift; sourceTree = "<group>"; };
 		BFD945E5244DC5E80012785A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFD945E7244DC5EB0012785A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFD945EA244DC5EB0012785A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,6 +72,8 @@
 		D487C49829AA7B0200022E3C /* WebUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUIViewController.swift; sourceTree = "<group>"; };
 		D487C49A29AAE9D900022E3C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D487C49C29AAF32C00022E3C /* APIErrorAlart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorAlart.swift; sourceTree = "<group>"; };
+		D487C4A629AB714400022E3C /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
+		D487C4AA29AB73B600022E3C /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		D4A1C06A29A4B5BB00673AA7 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,8 +170,10 @@
 		D487C47229A7860200022E3C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BFD945E2244DC5E80012785A /* RepositoriesTableViewController.swift */,
+				BFD945E2244DC5E80012785A /* SearchRepositoryViewController.swift */,
 				BFD945E4244DC5E80012785A /* Main.storyboard */,
+				D487C4AA29AB73B600022E3C /* RepositoryCell.swift */,
+				D487C4A629AB714400022E3C /* RepositoryCell.xib */,
 				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
 				D487C47F29A7DC4300022E3C /* RepositoryDetail.storyboard */,
 				D487C49829AA7B0200022E3C /* WebUIViewController.swift */,
@@ -309,6 +315,7 @@
 				D487C48029A7DC4300022E3C /* RepositoryDetail.storyboard in Resources */,
 				BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */,
 				BFD945E6244DC5E80012785A /* Main.storyboard in Resources */,
+				D487C4A729AB714400022E3C /* RepositoryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,9 +362,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFD945E3244DC5E80012785A /* RepositoriesTableViewController.swift in Sources */,
+				BFD945E3244DC5E80012785A /* SearchRepositoryViewController.swift in Sources */,
 				BF0A658D244F2A3B00280FA6 /* RepositoryDetailViewController.swift in Sources */,
 				D4A1C06B29A4B5BB00673AA7 /* Repositories.swift in Sources */,
+				D487C4AB29AB73B600022E3C /* RepositoryCell.swift in Sources */,
 				D487C49B29AAE9D900022E3C /* APIError.swift in Sources */,
 				D487C47929A7B29400022E3C /* Request.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,

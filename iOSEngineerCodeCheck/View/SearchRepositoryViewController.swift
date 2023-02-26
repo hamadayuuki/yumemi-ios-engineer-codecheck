@@ -31,7 +31,9 @@ class SearchRepositoryViewController: UIViewController {
         setBinding()
     }
 
-    private func setLayout() {}
+    private func setLayout() {
+        self.title = "リポジトリ検索"
+    }
 
     private func setBinding() {
         repositoriesTableViewModel.$repositories
