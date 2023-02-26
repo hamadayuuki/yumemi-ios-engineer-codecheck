@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Nuke
 import UIKit
 
 class RepositoryDetailViewController: UIViewController {
@@ -16,63 +17,52 @@ class RepositoryDetailViewController: UIViewController {
     public var repository: Repository!
 
     // sotoryboardとの接続を忘れていない限りnilが入ることはない
-    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.contentMode = .scaleAspectFit
+            avatarImageView.layer.cornerRadius = 24
+        }
+    }
     @IBOutlet private weak var repoTitleLabel: UILabel!
-    @IBOutlet private weak var repoLanguageLabel: UILabel!
-    @IBOutlet private weak var starLabel: UILabel!
-    @IBOutlet private weak var wachLabel: UILabel!
-    @IBOutlet private weak var forkLabel: UILabel!
-    @IBOutlet private weak var issueLabel: UILabel!
+    @IBOutlet private weak var updatedAtLabel: UILabel!
+    @IBOutlet private weak var repositoryInfoLabel: UILabel!
+
+    @IBOutlet weak var shareLabel: UILabel!
+    @IBOutlet weak var shareImage: UIImageView!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var showWebLabel: UILabel!
+    @IBOutlet weak var showWebImage: UIImageView!
+    @IBOutlet weak var showWebButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setLayout()
         setBinding()
-        getImage()
-    }
-
-    private func setBinding() {
-        repositoryDetailViewModel.$avatarUIImage
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] avatarUIImage in
-                guard let self = self else { return }
-                self.avatarImageView.image = avatarUIImage
-            }
-            .store(in: &cancellable)
     }
 
     private func setLayout() {
-        let shareButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareRepository(_:)))
-        let showWebButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(showWebView(_:)))
-        self.navigationItem.rightBarButtonItems = [showWebButton, shareButton]
+        let avatarImageUrl = URL(string: repository.owner.avatar_url)!
+        Nuke.loadImage(with: avatarImageUrl, options: Common.nukeGithubOptions, into: avatarImageView!)
 
         repoTitleLabel.text = repository.full_name
-        repoLanguageLabel.text = "✏️ : \(repository.language ?? "")"
-        starLabel.text = "⭐️ : \(repository.stargazers_count)"
-        wachLabel.text = "👀 : \(repository.watchers_count)"
-        forkLabel.text = "🔀 : \(repository.forks_count)"
-        issueLabel.text = "❗️ : \(repository.open_issues_count)"
+        updatedAtLabel.text = "updatedAt: \( repository.updated_at.prefix(10).replacingOccurrences(of: "-", with: "/"))"
+        repositoryInfoLabel.text = "⭐️ \(repository.stargazers_count.convertEnglishUtil())    👀 \(repository.watchers_count.convertEnglishUtil())    🔀 \(repository.forks_count.convertEnglishUtil())   ❗️ \(repository.open_issues_count.convertEnglishUtil())"
+
+        shareLabel.text = "シェア"
+        shareImage.image = UIImage(systemName: "square.and.arrow.up")
+        shareButton.addTarget(self, action: #selector(shareRepository(_:)), for: .touchUpInside)
+        showWebLabel.text = "WEB"
+        showWebImage.image = UIImage(systemName: "globe.badge.chevron.backward")
+        showWebButton.addTarget(self, action: #selector(showWebView(_:)), for: .touchUpInside)
     }
 
-    func getImage() {
-        let owner = repository.owner
-        if !owner.avatar_url.isEmpty {
-            let imageUrl = owner.avatar_url
-            Task {
-                do {
-                    try await repositoryDetailViewModel.setAvatarUIImage(url: imageUrl)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
+    private func setBinding() {}
 
     // MARK: Button Action
 
     @objc func shareRepository(_ sender: UIBarButtonItem) {
-        let shareItems = [repository.full_name, UIImage(named: "github-mark"), URL(string: repository.html_url)!] as [Any]
+        let shareItems = [repository.full_name, UIImage(named: "github-mark")!, URL(string: repository.html_url)!] as [Any]
         let shareActivityView = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
         self.present(shareActivityView, animated: true)
     }
