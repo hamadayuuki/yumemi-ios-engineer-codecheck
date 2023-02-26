@@ -103,7 +103,7 @@ extension SearchRepositoryViewController: UITableViewDelegate, UITableViewDataSo
         let avatarImageUrl = URL(string: repo.owner.avatar_url)!
         Nuke.loadImage(with: avatarImageUrl, options: nukeOptions, into: cell.iconImage!)
         cell.repositoryNameLabel?.text = repo.full_name
-        cell.updatedAtLabel?.text = "2022/01/01"
+        cell.updatedAtLabel?.text = "last: \(repo.updated_at.prefix(10).replacingOccurrences(of:"-", with:"/"))"  // "2013-01-05T17:58:47Z" -> "2013-01-05" -> "2013/01/05"
         cell.repositoryInfoLabel?.text = "⭐️\(repo.stargazers_count)   👀\(repo.watchers_count)"
         cell.tag = indexPath.row
         return cell
