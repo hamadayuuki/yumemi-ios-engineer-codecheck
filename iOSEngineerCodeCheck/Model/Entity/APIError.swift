@@ -9,6 +9,8 @@
 import Foundation
 
 enum APIError: Error {
+    case searchWordEmpty
+    case containsSpacialWord
     // クライアントエラー
     case badrequest  // 400
     case unauthorized  // 401
@@ -21,6 +23,10 @@ enum APIError: Error {
 
     var _code: Int {
         switch self {
+        case .searchWordEmpty:
+            return 0
+        case .containsSpacialWord:
+            return 1
         case .badrequest:
             return 400
         case .unauthorized:
@@ -40,6 +46,8 @@ enum APIError: Error {
 
     var title: String {
         switch self {
+        case .searchWordEmpty, .containsSpacialWord:
+            return "Error Search Word"
         case .badrequest:
             return "400 Bad Request"
         case .unauthorized:
@@ -57,6 +65,10 @@ enum APIError: Error {
 
     var description: String {
         switch self {
+        case .searchWordEmpty:
+            return "検索文字が空です"
+        case .containsSpacialWord:
+            return "特殊文字が検索文字に含まれています"
         case .badrequest:
             return "クライントエラー"
         case .unauthorized:
@@ -74,6 +86,10 @@ enum APIError: Error {
 
     init(statusCode: Int) {
         switch statusCode {
+        case 0:
+            self = .searchWordEmpty
+        case 1:
+            self = .containsSpacialWord
         case 400:
             self = .badrequest
         case 401:
