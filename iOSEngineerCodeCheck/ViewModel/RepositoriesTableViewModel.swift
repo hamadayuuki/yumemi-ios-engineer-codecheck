@@ -13,11 +13,18 @@ class RepositoriesTableViewModel: ObservableObject {
     private let request = Request()
 
     @Published var repositories: [Repository] = []
+    @Published var apiErrorAlart: APIErrorAlart = APIErrorAlart(title: "", description: "")
 
     public func setRepositories(searchText: String) async throws {
         let githubAPISearchUrl = "https://api.github.com/search/repositories?q=\(searchText)"
-        let data = try await request.fetchData(url: githubAPISearchUrl)
-        let repos: Repositories = try! JSONDecoder().decode(Repositories.self, from: data)  // TODO: 変数名変更, Repositoriesの命名から変更
-        repositories = repos.items
+        let result = try await request.fetchData(url: githubAPISearchUrl)
+        switch result {
+        case let .success(data):
+            let repos: Repositories = try! JSONDecoder().decode(Repositories.self, from: data)  // TODO: 変数名変更, Repositoriesの命名から変更
+            repositories = repos.items
+        case let .failure(apiError):
+            apiErrorAlart.title = apiError.title
+            apiErrorAlart.description = apiError.description
+        }
     }
 }

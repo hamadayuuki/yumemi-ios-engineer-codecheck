@@ -13,9 +13,16 @@ class RepositoryDetailViewModel: ObservableObject {
     private let request = Request()
 
     @Published public var avatarUIImage = UIImage()
+    @Published var apiErrorAlart: APIErrorAlart = APIErrorAlart(title: "", description: "")
 
     public func setAvatarUIImage(url: String) async throws {
-        let data = try await request.fetchData(url: url)
-        avatarUIImage = UIImage(data: data) ?? UIImage()
+        let result = try await request.fetchData(url: url)
+        switch result {
+        case let .success(data):
+            avatarUIImage = UIImage(data: data) ?? UIImage()
+        case let .failure(apiError):
+            apiErrorAlart.title = apiError.title
+            apiErrorAlart.description = apiError.description
+        }
     }
 }
