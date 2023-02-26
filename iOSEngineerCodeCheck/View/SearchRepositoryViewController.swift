@@ -16,6 +16,7 @@ class SearchRepositoryViewController: UIViewController {
 
     @IBOutlet var repositoriesTableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
+    private var activityIndicatorView: UIActivityIndicatorView!
 
     private var cancellable = Set<AnyCancellable>()
     var repositories: [Repository] = []
@@ -29,12 +30,18 @@ class SearchRepositoryViewController: UIViewController {
         repositoriesTableView.register(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "RepositoryCell")
 
         searchBar.delegate = self
+
         setLayout()
         setBinding()
     }
 
     private func setLayout() {
         self.title = "リポジトリ検索"
+
+        activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.style = .large
+        activityIndicatorView.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
+        view.addSubview(activityIndicatorView)
     }
 
     private func setBinding() {
@@ -80,10 +87,13 @@ extension SearchRepositoryViewController: UISearchBarDelegate {
 
         if !searchBarText.trimmingCharacters(in: .whitespaces).isEmpty {
             Task {
+                activityIndicatorView.startAnimating()
                 do {
                     try await repositoriesTableViewModel.setRepositories(searchText: searchBarText)
+                    activityIndicatorView.stopAnimating()
                 } catch {
                     print(error.localizedDescription)
+                    activityIndicatorView.stopAnimating()
                 }
             }
         }
