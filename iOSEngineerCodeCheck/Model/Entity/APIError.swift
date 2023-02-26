@@ -10,14 +10,14 @@ import Foundation
 
 enum APIError: Error {
     // クライアントエラー
-    case badrequest         // 400
-    case unauthorized       // 401
-    case forbidden          // 403
-    case notfound           // 404
-    case validationFailed   // 422
+    case badrequest  // 400
+    case unauthorized  // 401
+    case forbidden  // 403
+    case notfound  // 404
+    case validationFailed  // 422
     // サーバーエラー
-    case server(Int)        // 500台
-    case unknown(Int)       // 200台+上記 以外
+    case server(Int)  // 500台
+    case unknown(Int)  // 200台+上記 以外
 
     var _code: Int {
         switch self {
