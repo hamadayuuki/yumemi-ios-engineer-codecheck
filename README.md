@@ -126,8 +126,7 @@ Gihtub Actions を使用して mainブランチ へのプルリク時に、テ�
 
 以下のPRの説明欄をご覧ください。
 
-- [テストを追加/API・Repository・Usecaseの単体テスト,結合テスト](https://github.com/kntkymt/yumemi-ios-engineer-codecheck/pull/17)
-- [テストを追加/UIテストを追加する](https://github.com/kntkymt/yumemi-ios-engineer-codecheck/pull/18)
+- [テストを追加](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/9)
 
 ## 取り組んだについて
 
