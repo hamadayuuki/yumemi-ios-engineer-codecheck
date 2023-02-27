@@ -137,7 +137,7 @@ Gihtub Actions を使用して mainブランチ へのプルリク時に、テ�
 - 課題部分の変更を確認したい場合は以下を参考にissueをご覧ください。
 
 | issue |
-| ------ | ------ |
+| ------ |
 | [ソースコードの可読性の向上](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/2) |
 | [バグを修正](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/3) |
 | [FatVCの回避](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/4) |
