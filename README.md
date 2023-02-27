@@ -1,46 +1,154 @@
 # 株式会社ゆめみ iOS エンジニアコードチェック課題
 
-## 概要
+## 内容
 
-本プロジェクトは株式会社ゆめみ（以下弊社）が、弊社に iOS エンジニアを希望する方に出す課題のベースプロジェクトです。本課題が与えられた方は、下記の概要を詳しく読んだ上で課題を取り組んでください。
-
-## アプリ仕様
-
-本アプリは GitHub のリポジトリーを検索するアプリです。
-
-![動作イメージ](README_Images/app.gif)
-
-### 環境
-
-- IDE：基本最新の安定版（本概要更新時点では Xcode 14.1）
-- Swift：基本最新の安定版（本概要更新時点では Swift 5.7）
-- 開発ターゲット：基本最新の安定版（本概要更新時点では iOS 16.1）
-- サードパーティーライブラリーの利用：オープンソースのものに限り制限しない
-
-### 動作
-
-1. 何かしらのキーワードを入力
-2. GitHub API（`search/repositories`）でリポジトリーを検索し、結果一覧を概要（リポジトリ名）で表示
-3. 特定の結果を選択したら、該当リポジトリの詳細（リポジトリ名、オーナーアイコン、プロジェクト言語、Star 数、Watcher 数、Fork 数、Issue 数）を表示
-
-## 課題取り組み方法
-
-Issues を確認した上、本プロジェクトを [**Duplicate** してください](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/duplicating-a-repository)（Fork しないようにしてください。必要ならプライベートリポジトリーにしても大丈夫です）。今後のコミットは全てご自身のリポジトリーで行ってください。
-
-コードチェックの課題 Issue は全て [`課題`](https://github.com/yumemi/ios-engineer-codecheck/milestone/1) Milestone がついており、難易度に応じて Label が [`初級`](https://github.com/yumemi/ios-engineer-codecheck/issues?q=is%3Aopen+is%3Aissue+label%3A初級+milestone%3A課題)、[`中級`](https://github.com/yumemi/ios-engineer-codecheck/issues?q=is%3Aopen+is%3Aissue+label%3A中級+milestone%3A課題+) と [`ボーナス`](https://github.com/yumemi/ios-engineer-codecheck/issues?q=is%3Aopen+is%3Aissue+label%3Aボーナス+milestone%3A課題+) に分けられています。課題の必須／選択は下記の表とします：
-
-|   | 初級 | 中級 | ボーナス
-|--:|:--:|:--:|:--:|
-| 新卒／未経験者 | 必須 | 選択 | 選択 |
-| 中途／経験者 | 必須 | 必須 | 選択 |
+株式会社ゆめみ インターン iOS提出課題
+課題リポジトリ: https://github.com/yumemi-inc/ios-engineer-codecheck
 
 
-課題 Issueをご自身のリポジトリーにコピーするGitHub Actionsをご用意しております。  
-[こちらのWorkflow](./.github/workflows/copy-issues.yml)を[手動でトリガーする](https://docs.github.com/ja/actions/managing-workflow-runs/manually-running-a-workflow)ことでコピーできますのでご活用下さい。
+## 対象機種・アプリ仕様・説明
 
-課題が完成したら、リポジトリーのアドレスを教えてください。
+本アプリはGitHubのリポジトリを検索するアプリです。
 
-## 参考記事
+- 対象OS: iOS16.1
+- 対象機種: iPhoneのみ
 
-提出された課題の評価ポイントに関しては、[こちらの記事](https://qiita.com/lovee/items/d76c68341ec3e7beb611)に詳しく書かれてありますので、ぜひご覧ください。
-ライブラリの利用に関しては [こちらの記事](https://qiita.com/ykws/items/b951a2e24ca85013e722)も参照ください。
+| リポジトリ検索(一覧表示) | リポジトリ詳細 | シェア・WEB画面表示 |
+| ------ | ------ | ------ | ------ |
+| ![](README_Images/SearchRepositoryView.gif) | ![](README_Images/RipositoryDetailView.gif)  | ![](README_Images/ShareAndWebView.gif) |
+
+### 検索ホーム
+- アプリの初期画面
+- SearchBarにキーワードを入力することでGithubのリポジトリ一覧を表示
+- 各セルには`所有者のアイコン`, `リポジトリ名`, `最終更新日`, `スター数` を表示
+    - リポジトリ閲覧のために必要な最低限の項目
+- インスタグラムやデモアプリを[参考](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/25)にUIを構成
+- セルをタップすることで詳細画面に遷移可能
+
+### 詳細
+- 検索結果を表示
+- `所有者のアイコン`, `リポジトリ名`, `最終更新日`,  `スター数`, `閲覧数` `フォーク数`, `iSuue数` を表示
+- `シェア`, `WEB` ボタンを表示
+
+### シェア・WEB画面表示
+- `シェア` を押すことでリポジトリを他SNSへ共有可能となります
+- `WEB` を押すとアプリ内でブラウザを開きリポジトリ詳細を確認可能です
+    - ユーザーのアプリ離脱率を考慮してアプリ内でブラウザを開いています
+
+### その他
+- 検索画面と詳細画面Readmeがロード中は`UIActivityIndicator`でロード中表示
+- エラーが発生した場合は[Loaf](https://github.com/schmidyy/Loaf)を使用しトーストでメッセージを表示
+
+|  | |
+| ------ | ------- |
+| ![](README_Images/Loading.png) | ![](README_Images/Error.gif) |
+
+## 実行環境設定
+
+### Xcode
+
+前提として、Xcode@14.1 と homebrew はインストールされているものとします。
+
+#### 1. homebrew で mint をインストール
+
+CLI は mint で管理しています。
+CLIには[apple/swift-format](https://github.com/apple/swift-format)が含まれます。
+
+Appleが公開しているコード整形ライブラリ。swift-formatの整形規則は[.swift-format](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/blob/main/.swift-format)に記述しています。
+
+```sh
+brew install mint
+```
+
+#### 2. mint で管理している CLI をインストール
+
+Mintfile に書かれている CLI がインストールされます。インストールした CLI は `mint run <command名>` で実行可能です。
+
+```sh
+mint bootstrap
+```
+
+#### 3. swift-fomatを使用した自動整形の実行
+
+<img width = 70% src = "README_Images/Error.gif">
+
+`Xcode > Bulid Target(iOSEngineerCodeCheck) > Bulid Phases > +`
+
+Bulid Phases に `swift-format` という名称で、以下の自動実行用のスクリプトを書く。
+
+対象のスキーム(今回はiOSEngineerCodeCheck)がビルドされるたびに以下のスクリプトが実行される。
+
+```sh
+# nicklockwood/SwiftFormatではなく、Apple標準のswift-formatを使用
+# サードパーティー製のライブラリを極力使いたくないというモチベーションから
+
+# `-p/--parallel` `-r/--recursive` `-i/--in-place` `-s/--strict`
+  xcrun --sdk macosx mint run swift-format swift-format -p -r -i iOSEngineerCodeCheck iOSEngineerCodeCheckTests iOSEngineerCodeCheckUITests
+```
+
+#### その他. アプリ内で使用してるライブラリのインストール
+
+アプリ内で使用しているライブラリは全て`Swift Package Manager`を用いて導入しているため、`.xcodeproj`を開くと自動でダウンロードされます。
+
+ライブラリに依存しないアプリケーションとするため、インストールを極力しないようにした。
+Apple標準のライブラリで代用できる時には、Apple標準のものを使用。(例: Combine, URLSession, swift-format...)
+
+
+| ライブラリ名 | 用途 |
+| ------ | ------ |
+| [Nuke@9.6.1](https://github.com/schmidyy/Loaf) | URLから画像を取得, 画像のキャッシュ |
+| [Loaf@0.70](https://github.com/kean/Nuke.git) | 画像取得 |
+
+
+### Github Actions
+
+Gihtub Actions を使用して mainブランチ へのプルリク時に、テストを自動実行しています。
+`テスト = UnitTests/UITests スキーム` (スキームは任意で作成したもの)
+
+自動実行の内容は[XCTest.yml](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/blob/main/.github/workflows/XCTest.yml)に示しています。
+
+## アーキテクチャ
+
+- `MVVM`アーキテクチャを採用
+    - データバインディングを用いた一般的なアーキテクチャが課題に適していると考えたため
+    - データバインディングとして`Combine`を使用
+    - 非同期処理を可能とするためURLSessionでのリクエストでは`Async/await`を使用
+- レイアウトは主に`StoryBoard`を利用, 1`StoryBoard`-1`ViewController`方式を採用
+    - segueの遷移よりコードでの遷移の方がハンドリングしやすいと考えたため
+    - 1つの`StotryBoard`で複数画面を管理するのは複数ブランチでの同時作業をしたい場合に非効率だと考えたため
+
+以下は参考となるPRです。
+
+- [Issue/6: MVVMアーキテクチャを導入](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/pull/14)
+- [Issue/2: VCとStoryboardの関係を 1対1 とする](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/pull/15)
+### テスト
+
+以下のPRの説明欄をご覧ください。
+
+- [テストを追加/API・Repository・Usecaseの単体テスト,結合テスト](https://github.com/kntkymt/yumemi-ios-engineer-codecheck/pull/17)
+- [テストを追加/UIテストを追加する](https://github.com/kntkymt/yumemi-ios-engineer-codecheck/pull/18)
+
+## 取り組んだについて
+
+- ゆめみさんが用意したissueと、追加で取り組んだissue の2種類があります。
+    - `初級`, `中級`, `上級`, `ボーナス` のラベルが割り当てられたissueがゆめみさんの用意したissueです。
+- 各PRに関係する課題をラベルとしてつけてあります。
+- 課題部分の変更を確認したい場合は以下を参考にissueをご覧ください。
+
+| issue |
+| ------ | ------ |
+| [ソースコードの可読性の向上](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/2) |
+| [バグを修正](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/3) |
+| [FatVCの回避](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/4) |
+| [プログラム構造をリファクタリング](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/5) |
+| [アーキテクチャを適用](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/6) |
+| [テストを追加](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/9) |
+| [UIをブラッシュアップ](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/7) |
+| [新機能を追加](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/8)|
+| [リポジトリの共有を可能にする](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/17) |
+| [リポジトリをブラウザから閲覧可能にする](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/18) |
+| [APIを叩く場合のエラーハンドリング](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/23) |
+| [UI/UXの改善](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/25) |
+| [無限スクロールを可能に](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/issues/28) |
+
+
