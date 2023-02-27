@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rmD-CG-9fI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="-1" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="pIz-rQ-mf9">
@@ -42,19 +42,43 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ypG-zT-5Kl">
+                                <rect key="frame" x="57" y="298" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="5mM-gL-Sg0"/>
+                                    <constraint firstAttribute="height" constant="300" id="hwm-tl-8Lv"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="検索してみましょう" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBb-GL-WqN">
+                                <rect key="frame" x="57" y="239" width="300" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="XJ7-es-IGG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LaS-UD-sru"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kBb-GL-WqN" firstAttribute="centerX" secondItem="eYq-Dk-Pn7" secondAttribute="centerX" id="4fF-OC-csd"/>
+                            <constraint firstItem="ypG-zT-5Kl" firstAttribute="top" secondItem="kBb-GL-WqN" secondAttribute="bottom" constant="30" id="Y0O-hC-cqe" userLabel="Welcom Image.top = Welcom Word.bottom + 10"/>
+                            <constraint firstItem="ypG-zT-5Kl" firstAttribute="centerY" secondItem="eYq-Dk-Pn7" secondAttribute="centerY" id="seB-dT-sKV"/>
+                            <constraint firstItem="ypG-zT-5Kl" firstAttribute="centerX" secondItem="eYq-Dk-Pn7" secondAttribute="centerX" id="tfu-7m-eba"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Pf-UF-ecW"/>
                     <connections>
                         <outlet property="repositoriesTableView" destination="rmD-CG-9fI" id="iAt-py-xtp"/>
                         <outlet property="searchBar" destination="pIz-rQ-mf9" id="cF6-FM-Tnq"/>
+                        <outlet property="welcomImage" destination="ypG-zT-5Kl" id="gO4-KH-UUy"/>
+                        <outlet property="welcomWord" destination="kBb-GL-WqN" id="1Fr-J6-OZE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7L-P5-dDZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-599" y="137"/>
+            <point key="canvasLocation" x="-600" y="136.60714285714286"/>
         </scene>
     </scenes>
     <resources>

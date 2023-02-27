@@ -14,10 +14,20 @@ import UIKit
 class SearchRepositoryViewController: UIViewController {
     private let repositoriesTableViewModel = RepositoriesTableViewModel()
 
+    @IBOutlet weak var welcomWord: UILabel! {
+        didSet {
+            welcomWord.text = "検索してみましょう"
+        }
+    }
+    @IBOutlet weak var welcomImage: UIImageView! {
+        didSet {
+            welcomImage.image = UIImage(named: "sitting-reading")
+
+        }
+    }
     @IBOutlet var repositoriesTableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
     private var activityIndicatorView: UIActivityIndicatorView!
-
     private var cancellable = Set<AnyCancellable>()
     private var searchWord = ""
     var repositories: [Repository] = []
@@ -78,6 +88,8 @@ class SearchRepositoryViewController: UIViewController {
                 guard let self = self else { return }
                 if isLoading {
                     self.activityIndicatorView.startAnimating()
+                    self.welcomImage.image = UIImage()  // 画像を削除
+                    self.welcomWord.text = ""
                 } else {
                     self.activityIndicatorView.stopAnimating()
                 }
