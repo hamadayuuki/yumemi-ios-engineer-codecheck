@@ -14,7 +14,7 @@
 - 対象機種: iPhoneのみ
 
 | リポジトリ検索(一覧表示) | リポジトリ詳細 | シェア・WEB画面表示 |
-| ------ | ------ | ------ | ------ |
+| ------ | ------ | ------ |
 | ![](README_Images/SearchRepositoryView.gif) | ![](README_Images/RipositoryDetailView.gif)  | ![](README_Images/ShareAndWebView.gif) |
 
 ### 検索ホーム
@@ -36,12 +36,13 @@
     - ユーザーのアプリ離脱率を考慮してアプリ内でブラウザを開いています
 
 ### その他
+
 - 検索画面と詳細画面Readmeがロード中は`UIActivityIndicator`でロード中表示
 - エラーが発生した場合は[Loaf](https://github.com/schmidyy/Loaf)を使用しトーストでメッセージを表示
 
-|  | |
-| ------ | ------- |
-| ![](README_Images/Loading.png) | ![](README_Images/Error.gif) |
+| エラーメッセージ |
+| ------- |
+ ![](README_Images/Error.gif) |
 
 ## 実行環境設定
 
@@ -70,9 +71,9 @@ mint bootstrap
 
 #### 3. swift-fomatを使用した自動整形の実行
 
-<img width = 70% src = "README_Images/Error.gif">
-
 `Xcode > Bulid Target(iOSEngineerCodeCheck) > Bulid Phases > +`
+
+<img width = 80% src = "README_Images/BulidPhases.png">
 
 Bulid Phases に `swift-format` という名称で、以下の自動実行用のスクリプトを書く。
 
@@ -102,10 +103,10 @@ Apple標準のライブラリで代用できる時には、Apple標準のもの�
 
 ### Github Actions
 
-Gihtub Actions を使用して mainブランチ へのプルリク時に、テストを自動実行しています。
+Gihtub Actions を使用して mainブランチ へのプルリク時に、テストを[自動実行](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/actions)しています。
 `テスト = UnitTests/UITests スキーム` (スキームは任意で作成したもの)
 
-自動実行の内容は[XCTest.yml](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/blob/main/.github/workflows/XCTest.yml)に示しています。
+自動実行の内容は [XCTest.yml](https://github.com/hamadayuuki/yumemi-ios-engineer-codecheck/blob/main/.github/workflows/XCTest.yml) に示しています。
 
 ## アーキテクチャ
 
